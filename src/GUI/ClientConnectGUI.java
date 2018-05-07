@@ -49,13 +49,13 @@ public class ClientConnectGUI implements ActionListener {
 		IPField = new JTextField();
 		IPField.setBounds(20, 20, 440, 50);
 		IPField.setForeground(Color.GRAY);
-		IPField.setText("Enter IP");
+		IPField.setText("localhost");
 		panel.add(IPField);
 		
 		portField = new JTextField();
 		portField.setBounds(20, 90, 440, 50);
 		portField.setForeground(Color.GRAY);
-		portField.setText("Enter Port");
+		portField.setText("123");
 		panel.add(portField);
 		
 		connectB = new JButton("Connect to Server");
