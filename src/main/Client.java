@@ -49,12 +49,6 @@ public class Client extends Thread{
 
 	public void run() {
 		try {
-			//Socket socket = new Socket(address, port);
-			//in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	    	//out = new PrintWriter(socket.getOutputStream(), true);
-	    	//out.println(name);
-	    	//send("CHAT " + "Hi, " + name + " here");
-	    
 	    	while(true) {
 	    		Thread.sleep(10);
 	    		String line = in.readLine();
