@@ -73,7 +73,7 @@ public class Client extends Thread{
 	    						send("CRPS");
 	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser);
 	    					}
-	    					if (command.equals("CRPS")) {
+	    					if (command.equals("CRPS")&&  !(otherUser.equals(name))) {
 	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser);
 	    					}
 	    				}
