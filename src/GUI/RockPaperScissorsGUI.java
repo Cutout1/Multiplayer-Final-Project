@@ -9,8 +9,11 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import main.Client;
 import main.Server;
 
 public class RockPaperScissorsGUI implements ActionListener{
@@ -20,15 +23,18 @@ public class RockPaperScissorsGUI implements ActionListener{
 	private JButton rock;
 	private JButton paper;
 	private JButton scissor;
+	private JLabel title;
+	private Client client;
 	
 	BufferedReader in;
 	PrintWriter out;
 	
-	public RockPaperScissorsGUI(String otherPlayer) {
-		initialize();
+	public RockPaperScissorsGUI(String otherPlayer, Client client1) {
+		client = client1;
+		initialize(otherPlayer);
 	}
 	
-	private void initialize() {
+	private void initialize(String otherPlayer) {
 		frame = new JFrame("Rock Paper Scissors");
 		frame.setBounds(0,0,750,300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,6 +42,9 @@ public class RockPaperScissorsGUI implements ActionListener{
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		addButtons();
+		//title = new JLabel("Rock Paper Scissors Game Against " + otherPlayer);
+		//title.setVerticalTextPosition(10);
+		//title.setHorizontalTextPosition(300);
 		frame.setVisible(true);
 		panel.setBackground(Color.ORANGE);
 	}

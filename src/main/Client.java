@@ -19,16 +19,15 @@ public class Client extends Thread{
 	public PrintWriter out;
 	
 	public String address;
-	public int port;
+	public final int PORT = 2256;
 	public String name;
 	
 	private ChatGUI chat;
 	
 	private boolean waitingRPS;
 	
-	public Client(String serverAddress, int serverPort, String theName) {
+	public Client(String serverAddress, String theName) {
 		address = serverAddress;
-		port = serverPort;
 		name = theName;
 		waitingRPS = false;
 		
@@ -36,7 +35,7 @@ public class Client extends Thread{
 		chat.start();
 		
 		try {
-			Socket socket = new Socket(address, port);
+			Socket socket = new Socket(address, PORT);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintWriter(socket.getOutputStream(), true);
 			out.println(name);
@@ -65,10 +64,10 @@ public class Client extends Thread{
 	    				if (waitingRPS == true) {
 	    					if (command.equals("SRPS") &&  !(otherUser.equals(name))) {
 	    						send("CRPS");
-	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser);
+	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser, this);
 	    					}
 	    					if (command.equals("CRPS")&&  !(otherUser.equals(name))) {
-	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser);
+	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser, this);
 	    					}
 	    				}
 	    				if (command.equals("CHAT")) {

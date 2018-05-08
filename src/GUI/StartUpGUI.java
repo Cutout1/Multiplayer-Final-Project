@@ -62,17 +62,8 @@ public class StartUpGUI implements ActionListener {
 		String command = arg0.getActionCommand();
 		if(command.equals("ServerButton")) {
 			ServerGUI serverGUI = new ServerGUI();
-			System.out.println("Asking for Server Port...");
-			String port = JOptionPane.showInputDialog(
-		            frame,
-		            "Enter port for the Server:",
-		            "Launching Server",
-		            JOptionPane.QUESTION_MESSAGE);
-			
 			try {
-			System.out.println("Port entered: "+port);
-			
-			server = new Server(Integer.parseInt(port), serverGUI);
+			server = new Server(serverGUI);
 			frame.hide();
 			server.start();
 			System.out.println("serverStarted");

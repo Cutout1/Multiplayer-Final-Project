@@ -24,7 +24,6 @@ public class ClientConnectGUI implements ActionListener {
 	private JPanel panel;
 	
 	private JTextField IPField;
-	private JTextField portField;
 	private JButton connectB;
 	
 	private Client client;
@@ -35,7 +34,7 @@ public class ClientConnectGUI implements ActionListener {
 	
 	private void initialize(){
 		frame = new JFrame("Connect to Server");
-		frame.setBounds(0,0,500,700);
+		frame.setBounds(0,0,500,200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -49,17 +48,11 @@ public class ClientConnectGUI implements ActionListener {
 		IPField = new JTextField();
 		IPField.setBounds(20, 20, 440, 50);
 		IPField.setForeground(Color.GRAY);
-		IPField.setText("localhost");
+		IPField.setText("Server IP");
 		panel.add(IPField);
 		
-		portField = new JTextField();
-		portField.setBounds(20, 90, 440, 50);
-		portField.setForeground(Color.GRAY);
-		portField.setText("123");
-		panel.add(portField);
-		
 		connectB = new JButton("Connect to Server");
-		connectB.setBounds(300, 150, 150, 50);
+		connectB.setBounds(300, 85, 150, 50);
 		connectB.setForeground(Color.BLUE);
 		connectB.setActionCommand("connect");
 		connectB.addActionListener(this);
@@ -80,7 +73,7 @@ public class ClientConnectGUI implements ActionListener {
 				            "Enter name",
 				            "Enter name",
 				            JOptionPane.QUESTION_MESSAGE);
-				client = new Client(IPField.getText(), Integer.parseInt(portField.getText()), name);
+				client = new Client(IPField.getText(), name);
 				LobbyGUI lGUI = new LobbyGUI(client);
 				lGUI.start();
 				client.start();

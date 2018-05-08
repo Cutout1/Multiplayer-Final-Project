@@ -13,13 +13,12 @@ import GUI.ServerGUI;
 
 public class Server extends Thread{
 	
-	private static int PORT;
+	private final int PORT = 2256;
 	private static ArrayList<User> users = new ArrayList<User>();
 	private static ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
 	private ServerGUI gui;
 	
-	public Server(int port, ServerGUI serverGUI) {
-		PORT = port;
+	public Server(ServerGUI serverGUI) {
 		gui = serverGUI;
 	}
 	
