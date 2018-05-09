@@ -71,12 +71,14 @@ public class Client extends Thread{
 	    						waitingRPS = false;
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
 	    					}
 	    					if (command.equals("CRPS")) {
 	    						currentGame = new RockPaperScissorsGUI(otherUser, this);
 	    						waitingRPS = false;
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
 	    					}
 	    				}
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
