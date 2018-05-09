@@ -23,6 +23,9 @@ public class Client extends Thread{
 	public String name;
 	
 	private ChatGUI chat;
+	private Object currentGame;
+	private LobbyGUI lobby;
+	private String otherPlayer;
 	
 	private boolean waitingRPS;
 	
@@ -61,14 +64,23 @@ public class Client extends Thread{
 	    			String otherUser = st.nextToken();
 	    			if(st.hasMoreTokens()) {
 	    				String command = st.nextToken();
-	    				if (waitingRPS == true) {
-	    					if (command.equals("SRPS") &&  !(otherUser.equals(name))) {
+	    				if (waitingRPS == true && !(otherUser.equals(name))) {
+	    					if (command.equals("SRPS")) {
 	    						send("CRPS");
-	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser, this);
+	    						currentGame = new RockPaperScissorsGUI(otherUser, this);
+	    						waitingRPS = false;
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
 	    					}
-	    					if (command.equals("CRPS")&&  !(otherUser.equals(name))) {
-	    						RockPaperScissorsGUI rpsGame = new RockPaperScissorsGUI(otherUser, this);
+	    					if (command.equals("CRPS")) {
+	    						currentGame = new RockPaperScissorsGUI(otherUser, this);
+	    						waitingRPS = false;
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
 	    					}
+	    				}
+	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
+	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
 	    				if (command.equals("CHAT")) {
 	    					String message = "";
@@ -87,6 +99,12 @@ public class Client extends Thread{
 	}
 	public void send(String str) {
 		out.println(name + " " + str);
+	}
+	public void setLobby(LobbyGUI newLobby) {
+		lobby = newLobby;
+	}
+	public void showLobby() {
+		lobby.show();
 	}
 	public void setWaitingRPS(boolean t) {
 		waitingRPS = t;

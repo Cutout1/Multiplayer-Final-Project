@@ -41,6 +41,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		addButtons();
+		client.setLobby(this);
 		frame.setVisible(true);
 		panel.setBackground(Color.CYAN);
 	}
@@ -68,8 +69,13 @@ public class LobbyGUI extends Thread implements ActionListener {
 		panel.add(SB);
 	}
 	
+	public void hide() {
+		frame.hide();
+	}
 	
-	
+	public void show() {
+		frame.show();
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
