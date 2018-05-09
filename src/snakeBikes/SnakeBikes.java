@@ -60,6 +60,11 @@ public class SnakeBikes extends Thread implements KeyListener {
 	        		}
 	        	}
         	}
+        	//boarder
+        	Point newest = points.get(points.size()-1);
+        	if(newest.x < 0 || newest.x > 800 || newest.y < 0 || newest.y > 800 ) {
+        		b = false;
+        	}
         	
         	SBD.setPoints(points, opponentPoints, c, angle);
         	SBD.repaint();
