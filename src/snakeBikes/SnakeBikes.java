@@ -61,7 +61,7 @@ public class SnakeBikes extends Thread implements KeyListener {
 	        	}
         	}
         	
-        	SBD.setPoints(points, opponentPoints, c);
+        	SBD.setPoints(points, opponentPoints, c, angle);
         	SBD.repaint();
         }
 	}
