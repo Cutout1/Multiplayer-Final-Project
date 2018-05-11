@@ -12,6 +12,7 @@ public class SnakeBikes extends Thread implements KeyListener {
 	ArrayList<Point> points = new ArrayList();
 	ArrayList<Point> opponentPoints = new ArrayList();
 	
+	//angle in radians
 	private double angle = 0.0;
 	private int speed = 5;
 	
@@ -56,7 +57,7 @@ public class SnakeBikes extends Thread implements KeyListener {
 	        	for(int i = points.size()-2; i >= 0; i--) {
 	        		Point testPoint = points.get(i);
 	        		if((thePoint.x > testPoint.x - search) && (thePoint.x < testPoint.x + search) && (thePoint.y > testPoint.y - search) && (thePoint.x < testPoint.x + search)){
-	        			b = false;
+	        		//	b = false;
 	        		}
 	        	}
         	}

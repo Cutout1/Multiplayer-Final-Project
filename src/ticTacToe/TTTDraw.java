@@ -4,6 +4,7 @@ package ticTacToe;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -21,6 +22,8 @@ public class TTTDraw extends Canvas {
 	private Image image;
 	private int time;
 	
+	private int[][] points;
+	
 	   public TTTDraw() {
 		   
 		   super();
@@ -31,6 +34,10 @@ public class TTTDraw extends Canvas {
 		   
 		    setSize(300, 300);
 		    setBackground(Color.green);
+	   }
+	   public void updatePoints(int[][] thePoints) {
+		   points = thePoints;
+		   System.out.println(points);
 	   }
 	   
 	   public void paint(Graphics g) {
@@ -44,6 +51,20 @@ public class TTTDraw extends Canvas {
 		   g2d.drawLine(0, 100, 300, 100);
 		   g2d.drawLine(0, 200, 300, 200);
 		   
+		   //draw Xs and Os
+		   g2d.setStroke(new BasicStroke(30));
+		   for(int x = 0; x < 3; x++) {
+			   for(int y = 0; y < 3; y++) {
+				   if(points[x][y] == 1) {
+					   //X
+					   g2d.drawString("X", (x*100)+50, (y*100)+50);
+				   }
+				   else if(points[x][y] == 2) {
+					   //O
+					   g2d.drawString("O", (x*100)+50, (y*100)+50);
+				   }
+			   }
+		   }
 	   }
 }
 

@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import main.Client;
 import main.Server;
 import snakeBikes.SnakeBikes;
+import ticTacToe.TicTacToe;
 
 public class LobbyGUI extends Thread implements ActionListener {
 
@@ -29,6 +30,8 @@ public class LobbyGUI extends Thread implements ActionListener {
 	
 	public SnakeBikes snakeBikes;
 	
+	public TicTacToe ticTacToe;
+	
 	public LobbyGUI(Client client1) throws IOException {
 		client = client1;
 	}
@@ -41,6 +44,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		addButtons();
+		client.setLobby(this);
 		frame.setVisible(true);
 		panel.setBackground(Color.CYAN);
 	}
@@ -53,7 +57,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 		RPS.addActionListener(this);
 		panel.add(RPS);
 		
-		TTT = new JButton("Other Game");
+		TTT = new JButton("Tic Tac Toe");
 		TTT.setBounds(300, 100, 150, 100);
 		TTT.setForeground(Color.BLUE);
 		TTT.setActionCommand("TTT");
@@ -68,8 +72,13 @@ public class LobbyGUI extends Thread implements ActionListener {
 		panel.add(SB);
 	}
 	
+	public void hide() {
+		frame.hide();
+	}
 	
-	
+	public void show() {
+		frame.show();
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -81,6 +90,10 @@ public class LobbyGUI extends Thread implements ActionListener {
 		if(command.equals("SB")) {
 			snakeBikes = new SnakeBikes();
 			snakeBikes.start();
+		}
+		if(command.equals("TTT")) {
+			ticTacToe = new TicTacToe(true);
+			ticTacToe.start();
 		}
 	}
 }
