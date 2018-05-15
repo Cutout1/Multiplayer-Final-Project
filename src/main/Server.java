@@ -66,7 +66,7 @@ public class Server extends Thread{
 				writers.add(out);
 				user = new User(name);
 				users.add(user);
-				gui.print(name+" connected");
+				gui.print(name+" has connected to the server");
 				
 				System.out.println("[Connect] "+name);
 
@@ -84,7 +84,7 @@ public class Server extends Thread{
 				System.out.println(e.getMessage());
 			} finally {
 				//client is leaving
-				gui.print(user.getName() + " disconnected");
+				gui.print(user.getName() + " has disconnected from the server");
 				if(user.getName() != null) {
 					users.remove(0);
 					System.out.println("There are this many users connected: " + users.size());
