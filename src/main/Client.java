@@ -85,7 +85,9 @@ public class Client extends Thread{
 	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
 	    				if(command.equals("SB")) {
-	    					lobby.snakeBikes.updateOpponent(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    					if(!(otherUser.equals(name))) {
+	    						lobby.snakeBikes.updateOpponent(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    					}
 	    				}
 	    				if (command.equals("CHAT")) {
 	    					String message = "";
