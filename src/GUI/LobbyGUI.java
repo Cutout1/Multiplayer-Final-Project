@@ -88,7 +88,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 			client.setWaitingRPS(true);
 		}
 		if(command.equals("SB")) {
-			snakeBikes = new SnakeBikes();
+			snakeBikes = new SnakeBikes(client);
 			snakeBikes.start();
 		}
 		if(command.equals("TTT")) {

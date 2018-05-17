@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import main.Client;
+
 public class SnakeBikes extends Thread implements KeyListener {
 	
 	ArrayList<Point> points = new ArrayList();
@@ -15,6 +17,12 @@ public class SnakeBikes extends Thread implements KeyListener {
 	//angle in radians
 	private double angle = 0.0;
 	private int speed = 5;
+	
+	private Client client;
+	
+	public SnakeBikes(Client theClient) {
+		client = theClient;
+	}
 	
 	public void run() {
 		SBDraw SBD = new SBDraw();
@@ -46,8 +54,10 @@ public class SnakeBikes extends Thread implements KeyListener {
         	int changeX, changeY;
         	changeX = (int) (Math.sin(angle)*speed);
         	changeY = (int) (Math.cos(angle)*speed);
+        	Point newPoint = new Point(lastPoint.x-changeX, lastPoint.y-changeY);
         	
-        	points.add(new Point(lastPoint.x-changeX, lastPoint.y-changeY));
+        	points.add(newPoint);
+        	client.send("SB "+newPoint.x+" "+newPoint.y);
         	
         	int search = 2;
         	
@@ -71,8 +81,8 @@ public class SnakeBikes extends Thread implements KeyListener {
         	SBD.repaint();
         }
 	}
-	public void updateOpponent(Point newPoint) {
-		opponentPoints.add(newPoint);
+	public void updateOpponent(int x, int y) {
+		opponentPoints.add(new Point(x , y));
 	}
 
 	@Override
