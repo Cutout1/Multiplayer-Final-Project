@@ -53,6 +53,16 @@ public class TTTDraw extends Canvas {
 		   
 		   //draw Xs and Os
 		   g2d.setStroke(new BasicStroke(30));
+		   
+		   //numbers
+		   int count = 1;
+		   for(int x = 0; x < 3; x++) {
+			   for(int y = 0; y < 3; y++) {
+				   g2d.drawString(""+count, (x*100)+10, (y*100)+15);
+				   count++;
+			   }
+		   }
+		   
 		   for(int x = 0; x < 3; x++) {
 			   for(int y = 0; y < 3; y++) {
 				   if(points[x][y] == 1) {

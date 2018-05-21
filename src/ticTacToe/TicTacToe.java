@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-public class TicTacToe extends Thread implements MouseListener {
+public class TicTacToe extends Thread implements MouseListener, KeyListener {
 	
 	//0 is blank, 1 is X, 2 is O
 	private int[][] points = new int[3][3];
@@ -37,13 +37,14 @@ public class TicTacToe extends Thread implements MouseListener {
         frame.setVisible(true);
         
         frame.addMouseListener(this);
+        frame.addKeyListener(this);
         
         points[0][0] = 1;
         points[1][1] = 2;
         
         TTTD.updatePoints(points);
         TTTD.repaint();
-
+        
 	}
 	
 	private void click(int x, int y) {
@@ -58,6 +59,24 @@ public class TicTacToe extends Thread implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		/*System.out.println("clicked");
 		int x = arg0.getX();
 		int y = arg0.getY();
 		
@@ -105,29 +124,55 @@ public class TicTacToe extends Thread implements MouseListener {
 				//right bottom
 				click(2, 2);
 			}
-		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		}*/
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent key) {
+		int keycode = key.getKeyCode();
+		if(keycode==KeyEvent.VK_1) {
+			click(0, 0);
+		}
+		if(keycode==KeyEvent.VK_2) {
+			click(1, 0);
+		}
+		if(keycode==KeyEvent.VK_3) {
+			click(2, 0);
+		}
+		if(keycode==KeyEvent.VK_4) {
+			click(0, 1);
+		}
+		if(keycode==KeyEvent.VK_5) {
+			click(1, 1);
+		}
+		if(keycode==KeyEvent.VK_6) {
+			click(2, 1);
+		}
+		if(keycode==KeyEvent.VK_7) {
+			click(0, 2);
+		}
+		if(keycode==KeyEvent.VK_8) {
+			click(1, 2);
+		}
+		if(keycode==KeyEvent.VK_9) {
+			click(2, 2);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
