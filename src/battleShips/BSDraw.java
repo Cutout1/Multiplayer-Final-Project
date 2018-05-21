@@ -54,4 +54,9 @@ public class BSDraw extends Canvas {
 		   }
 		   
 	   }
+
+	public void updatePoints(int[][] myPoints) {
+		// TODO Auto-generated method stub
+		
+	}
 }

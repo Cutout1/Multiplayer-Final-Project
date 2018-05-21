@@ -16,6 +16,7 @@ import main.Client;
 import main.Server;
 import snakeBikes.SnakeBikes;
 import ticTacToe.TicTacToe;
+import battleShips.BattleShips;
 
 public class LobbyGUI extends Thread implements ActionListener {
 
@@ -25,6 +26,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 	private JButton RPS;
 	private JButton TTT;
 	private JButton SB;
+	private JButton BS;
 	
 	private Client client;
 	
@@ -38,7 +40,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 
 	public void run() {
 		frame = new JFrame("Game Lobby");
-		frame.setBounds(0,0,700,300);
+		frame.setBounds(0,0,900,300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -70,6 +72,13 @@ public class LobbyGUI extends Thread implements ActionListener {
 		SB.setActionCommand("SB");
 		SB.addActionListener(this);
 		panel.add(SB);
+		
+		BS = new JButton("Battle Ships");
+		BS.setBounds(700, 100, 150, 100);
+		BS.setForeground(Color.BLUE);
+		BS.setActionCommand("BS");
+		BS.addActionListener(this);
+		panel.add(BS);
 	}
 	
 	public void hide() {
@@ -94,6 +103,10 @@ public class LobbyGUI extends Thread implements ActionListener {
 		if(command.equals("TTT")) {
 			ticTacToe = new TicTacToe(true);
 			ticTacToe.start();
+		}
+		if(command.equals("BS")) {
+			BattleShips battleShips = new BattleShips();
+			battleShips.start();
 		}
 	}
 }
