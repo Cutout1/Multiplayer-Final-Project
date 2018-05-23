@@ -118,6 +118,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 			frame.dispose();
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("SCISSORS")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose rock, so you win! :)");
+			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("SCISSORS")) {
@@ -126,10 +127,12 @@ public class RockPaperScissorsGUI implements ActionListener{
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("ROCK")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose paper, so you win! :)");
+			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("PAPER")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose scissors, so you win! :)");
+			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("ROCK")) {

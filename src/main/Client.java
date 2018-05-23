@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import GUI.ChatGUI;
 import GUI.LobbyGUI;
 import GUI.RockPaperScissorsGUI;
+import ticTacToe.TicTacToe;
 
 public class Client extends Thread{
 
@@ -28,11 +29,13 @@ public class Client extends Thread{
 	private String otherPlayer;
 	
 	private boolean waitingRPS;
+	private boolean waitingTTT;
 	
 	public Client(String serverAddress, String theName) {
 		address = serverAddress;
 		name = theName;
 		waitingRPS = false;
+		waitingTTT = false;
 		
 		chat = new ChatGUI(this);
 		chat.start();
@@ -81,8 +84,30 @@ public class Client extends Thread{
 	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
 	    					}
 	    				}
+	    				if (waitingTTT == true && !(otherUser.equals(name))) {
+	    					if (command.equals("STTT")) {
+	    						send("CTTT");
+	    						currentGame = new TicTacToe(true, otherUser, this);
+	    						((TicTacToe)currentGame).start();
+	    						waitingTTT = false;
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer);
+	    					}
+	    					if (command.equals("CTTT")) {
+	    						currentGame = new TicTacToe(false, otherUser, this);
+	    						((TicTacToe)currentGame).start();
+	    						waitingTTT = false;
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer);
+	    					}
+	    				}
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
 	    					((RockPaperScissorsGUI) currentGame).check(command);
+	    				}
+	    				if (command.equals("TTT") && otherUser.equals(otherPlayer)) {
+	    					((TicTacToe) currentGame).otherPlayerClick(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 	    				}
 	    				if(command.equals("SB")) {
 	    					if(otherUser.equals(otherPlayer)) {
@@ -107,6 +132,9 @@ public class Client extends Thread{
 	public void send(String str) {
 		out.println(name + " " + str);
 	}
+	public void sendWinMessage(String game) {
+		out.println("Server " + "CHAT " + name + " just beat " + otherPlayer + " in a game of " + game);
+	}
 	public void setLobby(LobbyGUI newLobby) {
 		lobby = newLobby;
 	}
@@ -115,6 +143,9 @@ public class Client extends Thread{
 	}
 	public void setWaitingRPS(boolean t) {
 		waitingRPS = t;
+	}
+	public void setWaitingTTT(boolean t) {
+		waitingTTT = t;
 	}
 	
 }

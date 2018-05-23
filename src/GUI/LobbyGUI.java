@@ -32,8 +32,6 @@ public class LobbyGUI extends Thread implements ActionListener {
 	
 	public SnakeBikes snakeBikes;
 	
-	public TicTacToe ticTacToe;
-	
 	public LobbyGUI(Client client1) throws IOException {
 		client = client1;
 	}
@@ -101,8 +99,8 @@ public class LobbyGUI extends Thread implements ActionListener {
 			snakeBikes.start();
 		}
 		if(command.equals("TTT")) {
-			ticTacToe = new TicTacToe(true);
-			ticTacToe.start();
+			client.send("STTT");
+			client.setWaitingTTT(true);
 		}
 		if(command.equals("BS")) {
 			BattleShips battleShips = new BattleShips();

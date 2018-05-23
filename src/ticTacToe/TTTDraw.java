@@ -58,7 +58,7 @@ public class TTTDraw extends Canvas {
 		   int count = 1;
 		   for(int x = 0; x < 3; x++) {
 			   for(int y = 0; y < 3; y++) {
-				   g2d.drawString(""+count, (x*100)+10, (y*100)+15);
+				   g2d.drawString(""+count, (y*100)+10, (x*100)+15);
 				   count++;
 			   }
 		   }
