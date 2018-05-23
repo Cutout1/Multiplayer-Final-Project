@@ -31,6 +31,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 	private Client client;
 	
 	public SnakeBikes snakeBikes;
+	public BattleShips battleShips;
 	
 	public LobbyGUI(Client client1) throws IOException {
 		client = client1;
@@ -103,7 +104,7 @@ public class LobbyGUI extends Thread implements ActionListener {
 			client.setWaitingTTT(true);
 		}
 		if(command.equals("BS")) {
-			BattleShips battleShips = new BattleShips();
+			battleShips = new BattleShips();
 			battleShips.start();
 		}
 	}
