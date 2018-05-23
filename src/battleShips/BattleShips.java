@@ -32,7 +32,6 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
         
         BSD.updatePoints(myPoints);
         BSD.repaint();
-        
 	}
 	
 	private void click(int x, int y) {

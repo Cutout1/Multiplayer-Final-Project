@@ -18,7 +18,6 @@ public class BSDraw extends Canvas {
 
 	private JFrame frame;
 	private Image image;
-	private int time;
 	
 	   public BSDraw() {
 		   
@@ -40,17 +39,32 @@ public class BSDraw extends Canvas {
 		   //draw opponent grid
 		   g2d.setColor(Color.red);
 		   g2d.setStroke(new BasicStroke(5));
-		   for(int i = 0; i>10; i++) {
-			   g2d.drawLine( 100 + i*20, 100, 100 + i*20, 300);
-			   g2d.drawLine( 100, 100 + i*20, 300, 100 + i*20);
+		   
+		   for(int i = 0; i<=10; i++) {
+			   g2d.drawLine( 50 + i*30, 50, 50 + i*30, 350);
+			   g2d.drawLine( 50, 50 + i*30, 350, 50 + i*30);
 		   }
 		   
 		   //draw your grid
-		   g2d.setColor(Color.blue);
+		   g2d.setColor(Color.black);
 		   g2d.setStroke(new BasicStroke(5));
-		   for(int i = 0; i>10; i++) {
-			   g2d.drawLine( 500 + i*20, 500, 500 + i*20, 700);
-			   g2d.drawLine( 500, 500 + i*20, 700, 500 + i*20);
+		   for(int i = 0; i<=10; i++) {
+			   g2d.drawLine( 450 + i*30, 450, 450 + i*30, 750);
+			   g2d.drawLine( 450, 450 + i*30, 750, 450 + i*30);
+		   }
+		   
+		   //label grids
+		   char c = 'A';
+		   int num = 1;
+		   for(int i = 0; i<10; i++) {
+			   g2d.drawString(""+num, 30, 60 + 30*i);
+			   g2d.drawString(""+c, 60 + 30*i, 30);
+			   
+			   g2d.drawString(""+num, 430, 460 + 30*i);
+			   g2d.drawString(""+c, 460 + 30*i, 430);
+			   
+			   num++;
+			   c++;
 		   }
 		   
 	   }
