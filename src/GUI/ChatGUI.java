@@ -24,8 +24,12 @@ public class ChatGUI extends Thread implements ActionListener {
 	private JTextArea messages;
 	private JScrollPane scroll;
 	
-	private JTextField sendBox;
 	private JButton send;
+	private JTextField sendBox;
+	
+	private JButton rps;
+	
+	private JButton ttt;
 	
 	private Client client;
 	
@@ -39,7 +43,7 @@ public class ChatGUI extends Thread implements ActionListener {
 	
 	private void initialize(){
 		frame = new JFrame("Server Chat");
-		frame.setBounds(0,0,500,600);
+		frame.setBounds(0,0,500,700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -70,6 +74,19 @@ public class ChatGUI extends Thread implements ActionListener {
 		send.addActionListener(this);
 		panel.add(send);
 		
+		rps = new JButton("Want to play RPS?");
+		rps.setBounds(100, 600, 60, 40);
+		rps.setForeground(Color.BLUE);
+		rps.setActionCommand("rpsPlay");
+		rps.addActionListener(this);
+		panel.add(rps);
+		
+		ttt = new JButton("Want to play TTT?");
+		ttt.setBounds(370, 500, 180, 30);
+		ttt.setForeground(Color.BLUE);
+		ttt.setActionCommand("tttPlay");
+		ttt.addActionListener(this);
+		panel.add(ttt);
 	}
 	
 	public void print(String msg) {
@@ -87,6 +104,16 @@ public class ChatGUI extends Thread implements ActionListener {
 			//send message in sendBox field
 			client.send("CHAT "+sendBox.getText());
 			sendBox.setText("");
+		}
+		
+		if(command.equals("rpsPlay")) {
+			//send message in sendBox field
+			client.send("CHAT "+ "Want to play RPS?");
+		}
+		
+		if(command.equals("tttPlay")) {
+			//send message in sendBox field
+			client.send("CHAT "+ "Want to play TTT?");
 		}
 	}
 }
