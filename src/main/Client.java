@@ -119,11 +119,11 @@ public class Client extends Thread{
 	    					while(st.hasMoreTokens()) {
 	    						message = message + " " + st.nextToken();
 	    					}
-	    					chat.print(otherUser + ": " + message);
+	    					chat.print(otherUser + ": " + censor(message));
+    						}
 	    				}
 	    			}
 	    		}
-	    	}
 		}
 		catch (Exception e){
 			System.out.println("Caught Exception");
@@ -146,6 +146,14 @@ public class Client extends Thread{
 	}
 	public void setWaitingTTT(boolean t) {
 		waitingTTT = t;
+	}
+	
+	public String censor(String str) {
+		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 
+				|| str.toLowerCase().indexOf("fuck") != -1 || str.toLowerCase().indexOf("shit") != -1) {
+			str = "I love God and God loves me";
+		}
+		return str;
 	}
 	
 }

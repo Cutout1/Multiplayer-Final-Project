@@ -31,6 +31,10 @@ public class ChatGUI extends Thread implements ActionListener {
 	
 	private JButton ttt;
 	
+	private JButton sb;
+	
+	private JButton bs;
+	
 	private Client client;
 	
 	public ChatGUI(Client theClient) {
@@ -43,7 +47,7 @@ public class ChatGUI extends Thread implements ActionListener {
 	
 	private void initialize(){
 		frame = new JFrame("Server Chat");
-		frame.setBounds(0,0,500,700);
+		frame.setBounds(0,0,500,670);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -75,18 +79,32 @@ public class ChatGUI extends Thread implements ActionListener {
 		panel.add(send);
 		
 		rps = new JButton("Want to play RPS?");
-		rps.setBounds(100, 600, 60, 40);
+		rps.setBounds(15, 550, 140, 40);
 		rps.setForeground(Color.BLUE);
 		rps.setActionCommand("rpsPlay");
 		rps.addActionListener(this);
 		panel.add(rps);
 		
 		ttt = new JButton("Want to play TTT?");
-		ttt.setBounds(370, 500, 180, 30);
+		ttt.setBounds(155, 550, 140, 40);
 		ttt.setForeground(Color.BLUE);
 		ttt.setActionCommand("tttPlay");
 		ttt.addActionListener(this);
 		panel.add(ttt);
+		
+		sb = new JButton("Want to play Snake Bikes?");
+		sb.setBounds(295, 550, 190, 40);
+		sb.setForeground(Color.BLUE);
+		sb.setActionCommand("sbPlay");
+		sb.addActionListener(this);
+		panel.add(sb);
+		
+		bs = new JButton("Want to play Battleships?");
+		bs.setBounds(15, 590, 195, 40);
+		bs.setForeground(Color.BLUE);
+		bs.setActionCommand("bsPlay");
+		bs.addActionListener(this);
+		panel.add(bs);
 	}
 	
 	public void print(String msg) {
@@ -114,6 +132,16 @@ public class ChatGUI extends Thread implements ActionListener {
 		if(command.equals("tttPlay")) {
 			//send message in sendBox field
 			client.send("CHAT "+ "Want to play TTT?");
+		}
+		
+		if(command.equals("sbPlay")) {
+			//send message in sendBox field
+			client.send("CHAT "+ "Want to play Snake Bikes?");
+		}
+		
+		if(command.equals("bsPlay")) {
+			//send message in sendBox field
+			client.send("CHAT "+ "Want to play Battleships?");
 		}
 	}
 }
