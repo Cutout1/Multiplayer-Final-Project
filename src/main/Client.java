@@ -91,7 +91,7 @@ public class Client extends Thread{
 	    						waitingTTT = false;
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
-	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer);
+	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer + ". You're X, you go first");
 	    					}
 	    					if (command.equals("CTTT")) {
 	    						currentGame = new TicTacToe(false, otherUser, this);
@@ -99,7 +99,7 @@ public class Client extends Thread{
 	    						waitingTTT = false;
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
-	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer);
+	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer + ". You're O, you go second");
 	    					}
 	    				}
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {

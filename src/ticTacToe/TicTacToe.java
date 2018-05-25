@@ -124,7 +124,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 			}
 		}
 		//checks diagonals
-		if ((points[0][0] == xOrO && points[1][1] == xOrO && points[2][2] == xOrO) || (points[0][0] == xOrO && points[1][1] == xOrO && points[2][2] == xOrO)) {
+		if ((points[0][0] == xOrO && points[1][1] == xOrO && points[2][2] == xOrO) || (points[2][0] == xOrO && points[1][1] == xOrO && points[0][2] == xOrO)) {
 			return true;
 		}
 		boolean fullBoard = true;
