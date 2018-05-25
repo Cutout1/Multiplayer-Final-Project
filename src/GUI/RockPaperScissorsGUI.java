@@ -49,9 +49,6 @@ public class RockPaperScissorsGUI implements ActionListener{
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		addButtons();
-		//title = new JLabel("Rock Paper Scissors Game Against " + otherPlayer);
-		//title.setVerticalTextPosition(10);
-		//title.setHorizontalTextPosition(300);
 		frame.setVisible(true);
 		panel.setBackground(Color.ORANGE);
 	}
@@ -119,6 +116,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 	public void close() {
 		client.otherPlayer = null;
 		client.showLobby();
+		client.currentGame = null;
 		frame.dispose();
 		JOptionPane.showMessageDialog(null, otherPlayer + " quit, so you win!");
 	}
@@ -137,34 +135,40 @@ public class RockPaperScissorsGUI implements ActionListener{
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose rock, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("SCISSORS")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose rock, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("SCISSORS")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose paper, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("ROCK")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose paper, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("PAPER")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose scissors, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("ROCK")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose scissors, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		}
 	}

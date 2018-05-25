@@ -57,64 +57,68 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 			points[x][y] = 1;
 			myTurn = false;
 			client.send("TTT " + x + " " + y);
-			if(checkWinner(1)) {
+			if (checkWinner(1)) {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, "You made a row of 3, so you win! :)");
 				client.sendWinMessage("Tic Tac Toe");
 				client.otherPlayer = null;
+				client.currentGame = null;
 				client.showLobby();
 				frame.dispose();
 			}
-		} else if (points[x][y] == 0){
+		} else if (points[x][y] == 0) {
 			points[x][y] = 2;
 			myTurn = false;
 			client.send("TTT " + x + " " + y);
-			if(checkWinner(2)) {
+			if (checkWinner(2)) {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, "You made a row of 3, so you win! :)");
 				client.sendWinMessage("Tic Tac Toe");
 				client.otherPlayer = null;
+				client.currentGame = null;
 				client.showLobby();
 				frame.dispose();
 			}
 		}
 		TTTD.updatePoints(points);
 		TTTD.repaint();
-		
+
 	}
 
 	public void otherPlayerClick(int x, int y) {
 		if (isX) {
 			points[x][y] = 2;
 			myTurn = true;
-			if(checkWinner(2)) {
+			if (checkWinner(2)) {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, otherUser + " made a row of 3, so you lose");
 				client.otherPlayer = null;
 				client.showLobby();
+				client.currentGame = null;
 				frame.dispose();
 			}
 		} else {
 			points[x][y] = 1;
 			myTurn = true;
-			if(checkWinner(1)) {
+			if (checkWinner(1)) {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, otherUser + " made a row of 3, so you lose");
 				client.otherPlayer = null;
 				client.showLobby();
+				client.currentGame = null;
 				frame.dispose();
 			}
 		}
 		TTTD.updatePoints(points);
 		TTTD.repaint();
 	}
-	
+
 	public boolean checkWinner(int xOrO) {
-		//checks rows and columns
+		// checks rows and columns
 		for (int x = 0; x < 3; x++) {
 			if (points[x][0] == xOrO && points[x][1] == xOrO && points[x][2] == xOrO) {
 				return true;
@@ -123,8 +127,9 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				return true;
 			}
 		}
-		//checks diagonals
-		if ((points[0][0] == xOrO && points[1][1] == xOrO && points[2][2] == xOrO) || (points[2][0] == xOrO && points[1][1] == xOrO && points[0][2] == xOrO)) {
+		// checks diagonals
+		if ((points[0][0] == xOrO && points[1][1] == xOrO && points[2][2] == xOrO)
+				|| (points[2][0] == xOrO && points[1][1] == xOrO && points[0][2] == xOrO)) {
 			return true;
 		}
 		boolean fullBoard = true;
@@ -139,6 +144,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 			JOptionPane.showMessageDialog(null, "The board is full and there was no winner, so it's a tie!");
 			client.otherPlayer = null;
 			client.showLobby();
+			client.currentGame = null;
 			frame.dispose();
 		}
 		return false;
@@ -163,56 +169,58 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		
-		  System.out.println("clicked"); 
-		  int x = arg0.getX(); 
-		  int y = arg0.getY();
-		  
-		  //first column 
-		  if(0 < x && x < 100) { 
-			  if(0 < y && y < 100) { 
-				  //top left
-				  click(0, 0); 
-			  } 
-			  if(100 < y && y < 200) { 
-				  //mid left 
-				  click(0, 1); 
-				  } 
-			  if(200 < y && y < 300) { 
-				  //bottom left 
-				  click(0, 2); 
-			  }
-		  } 
-		  //second column 
-		  if(100 < x && x < 200) { 
-			  if(0 < y && y < 100) { 
-				  //mid top 
-				  click(1, 0); 
-			  }
-			  if(100 < y && y < 200) { 
-				//mid mid 
-				click(1, 1); 
-				} 
-			  if(200 < y && y < 300) { 
-				  //mid bottom
-				  click(1, 2); 
-				  } 
-			  } 
-		  //third column 
-		  if(200 < x && x < 300) { 
-			  if(0 < y && y < 100){
-				  //right top 
-				  click(2, 0);  
-			  }
-			  if(100 < y && y < 200) { 
-				  //right mid 
-				  click(2, 1); 
-			  } 
-			  if(200 < y && y < 300) { 
-				  //right bottom 
-				  click(2, 2);
-			  }
-		  }
+
+		System.out.println("clicked");
+		int x = arg0.getX();
+		int y = arg0.getY();
+
+		// first column
+		if (myTurn == true) {
+			if (0 < x && x < 100) {
+				if (0 < y && y < 100) {
+					// top left
+					click(0, 0);
+				}
+				if (100 < y && y < 200) {
+					// mid left
+					click(0, 1);
+				}
+				if (200 < y && y < 300) {
+					// bottom left
+					click(0, 2);
+				}
+			}
+			// second column
+			if (100 < x && x < 200) {
+				if (0 < y && y < 100) {
+					// mid top
+					click(1, 0);
+				}
+				if (100 < y && y < 200) {
+					// mid mid
+					click(1, 1);
+				}
+				if (200 < y && y < 300) {
+					// mid bottom
+					click(1, 2);
+				}
+			}
+			// third column
+			if (200 < x && x < 300) {
+				if (0 < y && y < 100) {
+					// right top
+					click(2, 0);
+				}
+				if (100 < y && y < 200) {
+					// right mid
+					click(2, 1);
+				}
+				if (200 < y && y < 300) {
+					// right bottom
+					click(2, 2);
+				}
+			}
+		}
 	}
 
 	@Override

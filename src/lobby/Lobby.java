@@ -132,8 +132,8 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 			client.setWaitingRPS(true);
 		}
 		if(command.equals("SB")) {
-			snakeBikes = new SnakeBikes(client);
-			snakeBikes.start();
+			client.send("SSB");
+			client.setWaitingSB(true);
 		}
 		if(command.equals("TTT")) {
 			client.send("STTT");
@@ -187,8 +187,8 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 		}
 		else if(x<=1000) {
 			//snake bikes
-			snakeBikes = new SnakeBikes(client);
-			snakeBikes.start();
+			client.send("SSB");
+			client.setWaitingSB(true);
 		}
 	}
 

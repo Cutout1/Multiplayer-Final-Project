@@ -1,9 +1,11 @@
 package main;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
@@ -11,6 +13,7 @@ import javax.swing.JOptionPane;
 import GUI.ChatGUI;
 import GUI.RockPaperScissorsGUI;
 import lobby.Lobby;
+import snakeBikes.SnakeBikes;
 import ticTacToe.TicTacToe;
 
 public class Client extends Thread{
@@ -23,18 +26,23 @@ public class Client extends Thread{
 	public String name;
 	
 	private ChatGUI chat;
-	private Object currentGame;
+	public Object currentGame;
 	private Lobby lobby;
 	public String otherPlayer;
 	
 	private boolean waitingRPS;
 	private boolean waitingTTT;
+	private boolean waitingSB;
+	private boolean waitingBS;
+	public ArrayList<Point> opponentPoints = new ArrayList();
 	
 	public Client(String serverAddress, String theName) {
 		address = serverAddress;
 		name = theName;
 		waitingRPS = false;
 		waitingTTT = false;
+		waitingSB = false;
+		waitingBS = false;
 		
 		chat = new ChatGUI(this);
 		chat.start();
@@ -70,14 +78,14 @@ public class Client extends Thread{
 	    					if (command.equals("SRPS")) {
 	    						send("CRPS");
 	    						currentGame = new RockPaperScissorsGUI(otherUser, this);
-	    						waitingRPS = false;
+	    						setWaitingFalse();
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
 	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
 	    					}
 	    					if (command.equals("CRPS")) {
 	    						currentGame = new RockPaperScissorsGUI(otherUser, this);
-	    						waitingRPS = false;
+	    						setWaitingFalse();
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
 	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
@@ -88,7 +96,7 @@ public class Client extends Thread{
 	    						send("CTTT");
 	    						currentGame = new TicTacToe(true, otherUser, this);
 	    						((TicTacToe)currentGame).start();
-	    						waitingTTT = false;
+	    						setWaitingFalse();
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
 	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer + ". You're X, you go first");
@@ -96,12 +104,32 @@ public class Client extends Thread{
 	    					if (command.equals("CTTT")) {
 	    						currentGame = new TicTacToe(false, otherUser, this);
 	    						((TicTacToe)currentGame).start();
-	    						waitingTTT = false;
+	    						setWaitingFalse();
 	    						lobby.hide();
 	    						otherPlayer = otherUser;
 	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer + ". You're O, you go second");
 	    					}
 	    				}
+	    				if (waitingSB == true && !(otherUser.equals(name))) {
+	    					if (command.equals("SSB")) {
+	    						send("CSB");
+	    						currentGame = new SnakeBikes(this, false);
+	    						((SnakeBikes)currentGame).start();
+	    						setWaitingFalse();
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						//JOptionPane.showMessageDialog(null, "Game of Snake Bikes has been started with " + otherPlayer);
+	    					}
+	    					if (command.equals("CSB")) {
+	    						currentGame = new SnakeBikes(this, true);
+	    						((SnakeBikes)currentGame).start();
+	    						setWaitingFalse();
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						//JOptionPane.showMessageDialog(null, "Game of Snake Bikes has been started with " + otherPlayer);
+	    					}
+	    				}
+	    				
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
 	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
@@ -113,7 +141,7 @@ public class Client extends Thread{
 	    				}
 	    				if(command.equals("SB")) {
 	    					if(otherUser.equals(otherPlayer)) {
-	    						lobby.snakeBikes.updateOpponent(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    						opponentPoints.add(new Point (Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
 	    					}
 	    				}
 	    				if (command.equals("CHAT")) {
@@ -148,6 +176,15 @@ public class Client extends Thread{
 	}
 	public void setWaitingTTT(boolean t) {
 		waitingTTT = t;
+	}
+	public void setWaitingSB(boolean t) {
+		waitingSB = t;
+	}
+	public void setWaitingFalse() {
+		waitingRPS = false;
+		waitingTTT = false;
+		waitingSB = false;
+		waitingBS = false;
 	}
 	
 	//Stops people from saying rude or inappropriate things in chat

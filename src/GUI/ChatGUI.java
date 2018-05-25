@@ -94,7 +94,7 @@ public class ChatGUI extends Thread implements ActionListener {
 		panel.add(ttt);
 		
 		sb = new JButton("Want to play Snake Bikes?");
-		sb.setBounds(295, 550, 190, 40);
+		sb.setBounds(295, 550, 170, 40);
 		sb.setForeground(Color.BLUE);
 		sb.setActionCommand("sbPlay");
 		sb.addActionListener(this);

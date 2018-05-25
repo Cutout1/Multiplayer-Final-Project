@@ -6,34 +6,43 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import main.Client;
 
 public class SnakeBikes extends Thread implements KeyListener {
 	
 	ArrayList<Point> points = new ArrayList();
-	ArrayList<Point> opponentPoints = new ArrayList();
 	
 	//angle in radians
-	private double angle = 0.0;
+	private double angle;
 	private int speed = 5;
 	
 	private Client client;
 	
-	public SnakeBikes(Client theClient) {
+	public SnakeBikes(Client theClient, boolean left) {
 		client = theClient;
+		if(left == true) {
+			angle = 3.14;
+		} else {
+			angle = 0.0;
+		}
 	}
 	
 	public void run() {
 		SBDraw SBD = new SBDraw();
         JFrame frame = new JFrame("SnakeBikes");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.add(SBD);
         frame.pack();
         frame.setVisible(true);
         
         frame.addKeyListener(this);
-        
-        points.add(new Point(600, 700));
+        if (angle == 3.14) {
+        	points.add(new Point(100,100));
+        } else {
+        	points.add(new Point(600, 700));
+        }
         
         boolean b = true;
         for(int c=0; b; c++) {
@@ -44,12 +53,10 @@ public class SnakeBikes extends Thread implements KeyListener {
 				e.printStackTrace();
 			}
         	
-        	
         	if(c%2==1) {
         		points.remove(0);
         	}
 
-        	
         	Point lastPoint = points.get(points.size()-1);
         	int changeX, changeY;
         	changeX = (int) (Math.sin(angle)*speed);
@@ -77,13 +84,11 @@ public class SnakeBikes extends Thread implements KeyListener {
         		b = false;
         	}
         	
-        	SBD.setPoints(points, opponentPoints, c, angle);
+        	SBD.setPoints(points, client.opponentPoints, c, angle);
         	SBD.repaint();
         }
 	}
-	public void updateOpponent(int x, int y) {
-		opponentPoints.add(new Point(x , y));
-	}
+
 
 	@Override
 	public void keyPressed(KeyEvent e) {
