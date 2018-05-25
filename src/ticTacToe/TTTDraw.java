@@ -18,10 +18,6 @@ import javax.swing.JPanel;
 
 public class TTTDraw extends Canvas {
 
-	private JFrame frame;
-	private Image image;
-	private int time;
-	
 	private int[][] points;
 	
 	   public TTTDraw() {

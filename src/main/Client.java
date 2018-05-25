@@ -1,7 +1,6 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -153,7 +152,7 @@ public class Client extends Thread{
 	
 	//Stops people from saying rude or inappropriate things in chat
 	public String censor(String str) {
-		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1) {
+		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 || str.toLowerCase().indexOf("god is dead") != -1) {
 			str = "I love God and God loves me";
 		}
 		if (str.toLowerCase().indexOf("fuck") != -1 || str.toLowerCase().indexOf("shit") != -1) {

@@ -25,7 +25,6 @@ public class RockPaperScissorsGUI implements ActionListener{
 	private JButton paper;
 	private JButton scissor;
 	private JButton quit;
-	private JLabel title;
 	private Client client;
 	private String myChoice;
 	private String otherPlayer;
