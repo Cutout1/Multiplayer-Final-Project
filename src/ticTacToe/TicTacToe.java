@@ -45,7 +45,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 		frame.pack();
 		frame.setVisible(true);
 
-		frame.addMouseListener(this);
+		TTTD.addMouseListener(this);
 		frame.addKeyListener(this);
 
 		TTTD.updatePoints(points);
@@ -163,18 +163,56 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		/*
-		 * System.out.println("clicked"); int x = arg0.getX(); int y = arg0.getY();
-		 * 
-		 * //first column if(0 < x && x < 100) { if(0 < y && y < 100) { //top left
-		 * click(0, 0); } if(100 < y && y < 200) { //mid left click(0, 1); } if(200 < y
-		 * && y < 300) { //bottom left click(0, 2); } } //second column if(100 < x && x
-		 * < 200) { if(0 < y && y < 100) { //mid top click(1, 0); } if(100 < y && y <
-		 * 200) { //mid mid click(1, 1); } if(200 < y && y < 300) { //mid bottom
-		 * click(1, 2); } } //third column if(200 < x && x < 300) { if(0 < y && y < 100)
-		 * { //right top click(2, 0); } if(100 < y && y < 200) { //right mid click(2,
-		 * 1); } if(200 < y && y < 300) { //right bottom click(2, 2); } }
-		 */
+		
+		  System.out.println("clicked"); 
+		  int x = arg0.getX(); 
+		  int y = arg0.getY();
+		  
+		  //first column 
+		  if(0 < x && x < 100) { 
+			  if(0 < y && y < 100) { 
+				  //top left
+				  click(0, 0); 
+			  } 
+			  if(100 < y && y < 200) { 
+				  //mid left 
+				  click(0, 1); 
+				  } 
+			  if(200 < y && y < 300) { 
+				  //bottom left 
+				  click(0, 2); 
+			  }
+		  } 
+		  //second column 
+		  if(100 < x && x < 200) { 
+			  if(0 < y && y < 100) { 
+				  //mid top 
+				  click(1, 0); 
+			  }
+			  if(100 < y && y < 200) { 
+				//mid mid 
+				click(1, 1); 
+				} 
+			  if(200 < y && y < 300) { 
+				  //mid bottom
+				  click(1, 2); 
+				  } 
+			  } 
+		  //third column 
+		  if(200 < x && x < 300) { 
+			  if(0 < y && y < 100){
+				  //right top 
+				  click(2, 0);  
+			  }
+			  if(100 < y && y < 200) { 
+				  //right mid 
+				  click(2, 1); 
+			  } 
+			  if(200 < y && y < 300) { 
+				  //right bottom 
+				  click(2, 2);
+			  }
+		  }
 	}
 
 	@Override

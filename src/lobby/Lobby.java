@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +23,7 @@ import ticTacToe.TTTDraw;
 import ticTacToe.TicTacToe;
 import battleShips.BattleShips;
 
-public class Lobby extends Thread implements ActionListener {
+public class Lobby extends Thread implements MouseListener, ActionListener {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -57,6 +59,8 @@ public class Lobby extends Thread implements ActionListener {
 		
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		frame.pack();
+		
+		LD.addMouseListener(this);
 		
 		client.setLobby(this);
 		
@@ -140,5 +144,35 @@ public class Lobby extends Thread implements ActionListener {
 			battleShips = new BattleShips();
 			battleShips.start();
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("mouse pressed x = "+e.getX()+" y = "+e.getY());
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
