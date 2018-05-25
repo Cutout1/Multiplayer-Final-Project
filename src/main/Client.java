@@ -26,7 +26,7 @@ public class Client extends Thread{
 	private ChatGUI chat;
 	private Object currentGame;
 	private LobbyGUI lobby;
-	private String otherPlayer;
+	public String otherPlayer;
 	
 	private boolean waitingRPS;
 	private boolean waitingTTT;
@@ -106,6 +106,9 @@ public class Client extends Thread{
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
 	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
+	    				if (command.equals("RPSQUIT") && otherUser.equals(otherPlayer)) {
+	    					((RockPaperScissorsGUI) currentGame).close();
+	    				}
 	    				if (command.equals("TTT") && otherUser.equals(otherPlayer)) {
 	    					((TicTacToe) currentGame).otherPlayerClick(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 	    				}
@@ -148,10 +151,13 @@ public class Client extends Thread{
 		waitingTTT = t;
 	}
 	
+	//Stops people from saying rude or inappropriate things in chat
 	public String censor(String str) {
-		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 
-				|| str.toLowerCase().indexOf("fuck") != -1 || str.toLowerCase().indexOf("shit") != -1) {
+		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1) {
 			str = "I love God and God loves me";
+		}
+		if (str.toLowerCase().indexOf("fuck") != -1 || str.toLowerCase().indexOf("shit") != -1) {
+			str = "I tried to swear, but I realized swearing is not allowed on this CHRISTIAN SERVER";
 		}
 		return str;
 	}

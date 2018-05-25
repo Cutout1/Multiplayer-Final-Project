@@ -66,9 +66,9 @@ public class Server extends Thread{
 				writers.add(out);
 				user = new User(name);
 				users.add(user);
-				gui.print(name+" has connected to the server");
-				
-				System.out.println("[Connect] "+name);
+				for(PrintWriter writer : writers) {
+					writer.println("Server CHAT " + user.getName() + " connected. There are now " + users.size() + " users connected to the server");
+				}	
 
 				while(true) {
 					String input = in.readLine();
@@ -84,10 +84,11 @@ public class Server extends Thread{
 				System.out.println(e.getMessage());
 			} finally {
 				//client is leaving
-				gui.print(user.getName() + " has disconnected from the server");
+				for(PrintWriter writer : writers) {
+					writer.println("Server CHAT " + user.getName() + " has just disconnected. There are now " + (users.size() - 1) + " users connected");
+				}	
 				if(user.getName() != null) {
 					users.remove(0);
-					System.out.println("There are this many users connected: " + users.size());
 				}
 				if(out != null) {
 					writers.remove(out);

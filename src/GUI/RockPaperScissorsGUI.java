@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import main.Client;
 import main.Server;
@@ -23,6 +24,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 	private JButton rock;
 	private JButton paper;
 	private JButton scissor;
+	private JButton quit;
 	private JLabel title;
 	private Client client;
 	private String myChoice;
@@ -43,7 +45,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 	private void initialize() {
 		frame = new JFrame("Rock Paper Scissors");
 		frame.setBounds(0,0,750,300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -75,6 +77,13 @@ public class RockPaperScissorsGUI implements ActionListener{
 		scissor.setActionCommand("Scissors");
 		scissor.addActionListener(this);
 		panel.add(scissor);
+		
+		quit = new JButton("X");
+		quit.setBounds(680, 5, 50, 50);
+		quit.setForeground(Color.BLUE);
+		quit.setActionCommand("Quit");
+		quit.addActionListener(this);
+		panel.add(quit);
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -100,6 +109,19 @@ public class RockPaperScissorsGUI implements ActionListener{
 				check(otherPlayerMove);
 			}
 		}
+		if(command.equals("Quit")) {
+			client.otherPlayer = null;
+			client.send("RPSQUIT");
+			client.showLobby();
+			frame.dispose();
+		}
+	}
+	
+	public void close() {
+		client.otherPlayer = null;
+		client.showLobby();
+		frame.dispose();
+		JOptionPane.showMessageDialog(null, otherPlayer + " quit, so you win!");
 	}
 	
 	public void check(String otherChoice) {
@@ -114,29 +136,35 @@ public class RockPaperScissorsGUI implements ActionListener{
 			otherPlayerMove = null;
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("PAPER")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose rock, so you lose :(");
+			client.otherPlayer = null;
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("SCISSORS")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose rock, so you win! :)");
+			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("SCISSORS")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose paper, so you lose :(");
+			client.otherPlayer = null;
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("ROCK")) {
-			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose paper, so you win! :)");
+			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose paper, so you win! :)");
+			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("PAPER")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose scissors, so you win! :)");
+			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
 			client.showLobby();
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("ROCK")) {
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose scissors, so you lose :(");
+			client.otherPlayer = null;
 			client.showLobby();
 			frame.dispose();
 		}

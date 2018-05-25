@@ -62,6 +62,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, "You made a row of 3, so you win! :)");
 				client.sendWinMessage("Tic Tac Toe");
+				client.otherPlayer = null;
 				client.showLobby();
 				frame.dispose();
 			}
@@ -74,6 +75,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, "You made a row of 3, so you win! :)");
 				client.sendWinMessage("Tic Tac Toe");
+				client.otherPlayer = null;
 				client.showLobby();
 				frame.dispose();
 			}
@@ -91,6 +93,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, otherUser + " made a row of 3, so you lose");
+				client.otherPlayer = null;
 				client.showLobby();
 				frame.dispose();
 			}
@@ -101,6 +104,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				TTTD.updatePoints(points);
 				TTTD.repaint();
 				JOptionPane.showMessageDialog(null, otherUser + " made a row of 3, so you lose");
+				client.otherPlayer = null;
 				client.showLobby();
 				frame.dispose();
 			}
@@ -133,6 +137,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 		}
 		if (fullBoard == true) {
 			JOptionPane.showMessageDialog(null, "The board is full and there was no winner, so it's a tie!");
+			client.otherPlayer = null;
 			client.showLobby();
 			frame.dispose();
 		}
