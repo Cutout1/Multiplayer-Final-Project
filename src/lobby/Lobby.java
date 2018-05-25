@@ -1,12 +1,14 @@
-package GUI;
+package lobby;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,10 +17,11 @@ import javax.swing.JPanel;
 import main.Client;
 import main.Server;
 import snakeBikes.SnakeBikes;
+import ticTacToe.TTTDraw;
 import ticTacToe.TicTacToe;
 import battleShips.BattleShips;
 
-public class LobbyGUI extends Thread implements ActionListener {
+public class Lobby extends Thread implements ActionListener {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -28,26 +31,55 @@ public class LobbyGUI extends Thread implements ActionListener {
 	private JButton SB;
 	private JButton BS;
 	
+	private ImageIcon background;
+	
 	private Client client;
 	
 	public SnakeBikes snakeBikes;
 	public BattleShips battleShips;
 	
-	public LobbyGUI(Client client1) throws IOException {
+	private LobbyDraw LD;
+	
+	public Lobby(Client client1) throws IOException {
 		client = client1;
 	}
 
 	public void run() {
+		
+		LD = new LobbyDraw();
+		frame = new JFrame("Tic Tac Toe");
+		panel = new JPanel();
+		
+		addButtons();
+		panel.add(LD);
+		//frame.add(panel);
+		
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		frame.pack();
+		
+		
+		
+		frame.setVisible(true);
+
+		LD.repaint();
+		
+		/*
 		frame = new JFrame("Game Lobby");
 		frame.setBounds(0,0,900,300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		background = new ImageIcon("assets/titlescreenAPCS.png");
+		
 		addButtons();
-		//client.setLobby(this);
+		
+		client.setLobby(this);
 		frame.setVisible(true);
-		panel.setBackground(Color.CYAN);
+		*/
+		
+		
 	}
 	
 	private void addButtons() {

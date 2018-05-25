@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import lobby.Lobby;
 import main.Client;
 import main.Server;
 
@@ -81,8 +82,8 @@ public class ClientConnectGUI implements ActionListener, KeyListener {
 			            "Enter name",
 			            JOptionPane.QUESTION_MESSAGE);
 			client = new Client(IPField.getText(), name);
-			LobbyGUI lGUI = new LobbyGUI(client);
-			lGUI.start();
+			Lobby lobby = new Lobby(client);
+			lobby.start();
 			client.start();
 
 		} catch (NumberFormatException e) {
