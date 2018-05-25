@@ -47,8 +47,9 @@ public class Lobby extends Thread implements ActionListener {
 	public void run() {
 		
 		LD = new LobbyDraw();
-		frame = new JFrame("Tic Tac Toe");
+		frame = new JFrame("Game Lobby");
 		panel = new JPanel();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		addButtons();
 		panel.add(LD);
@@ -57,7 +58,7 @@ public class Lobby extends Thread implements ActionListener {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		frame.pack();
 		
-		
+		client.setLobby(this);
 		
 		frame.setVisible(true);
 

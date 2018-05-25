@@ -9,8 +9,8 @@ import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
 import GUI.ChatGUI;
-import GUI.LobbyGUI;
 import GUI.RockPaperScissorsGUI;
+import lobby.Lobby;
 import ticTacToe.TicTacToe;
 
 public class Client extends Thread{
@@ -24,7 +24,7 @@ public class Client extends Thread{
 	
 	private ChatGUI chat;
 	private Object currentGame;
-	private LobbyGUI lobby;
+	private Lobby lobby;
 	public String otherPlayer;
 	
 	private boolean waitingRPS;
@@ -137,7 +137,7 @@ public class Client extends Thread{
 	public void sendWinMessage(String game) {
 		out.println("Server " + "CHAT " + name + " just beat " + otherPlayer + " in a game of " + game);
 	}
-	public void setLobby(LobbyGUI newLobby) {
+	public void setLobby(Lobby newLobby) {
 		lobby = newLobby;
 	}
 	public void showLobby() {
