@@ -67,6 +67,15 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 
 		LD.repaint();
 		
+		while(true) {
+        	try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	LD.repaint();
+        }
 		/*
 		frame = new JFrame("Game Lobby");
 		frame.setBounds(0,0,900,300);
@@ -153,9 +162,7 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		System.out.println("mouse entered "+x+" "+y);
+		
 	}
 
 	@Override

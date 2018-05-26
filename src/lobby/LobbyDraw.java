@@ -6,10 +6,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+
+import battleShips.BattleShips;
 
 public class LobbyDraw extends Canvas {
 
@@ -39,6 +42,30 @@ public class LobbyDraw extends Canvas {
 		   Graphics2D g2d = (Graphics2D) g;
 		   
 		   g2d.drawImage(image, 0, 0, this);
+		   
+		   int x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x;
+		   int y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
+		   
+		   g2d.setColor(Color.GREEN);
+		   
+		   if(y > 0 && y < 600) {
+				if(x<=250) {
+					//battle ships
+					g2d.drawString("BattleShips", 10, 50);
+				}
+				else if(x<=500) {
+					//tic tac toe
+					g2d.drawString("Tic Tac Toe", 260, 50);
+				}
+				else if(x<=750) {
+					//rock paper scissors
+					g2d.drawString("Rock Paper Scissors", 510, 50);
+				}
+				else if(x<=1000) {
+					//snake bikes
+					g2d.drawString("Snake Bikes", 760, 50);
+				}
+		   }
 	   }
 }
 

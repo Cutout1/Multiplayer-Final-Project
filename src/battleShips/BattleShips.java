@@ -1,11 +1,13 @@
 package battleShips;
 
+import java.awt.MouseInfo;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import ticTacToe.TTTDraw;
 
@@ -32,6 +34,7 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
         
         BSD.updatePoints(myPoints);
         BSD.repaint();
+        
 	}
 	
 	private void click(int x, int y) {
