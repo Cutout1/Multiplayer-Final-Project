@@ -3,6 +3,7 @@ package lobby;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -47,6 +48,7 @@ public class LobbyDraw extends Canvas {
 		   int y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
 		   
 		   g2d.setColor(Color.GREEN);
+		   g2d.setFont(new Font("Helvetica", Font.PLAIN, 36));
 		   
 		   if(y > 0 && y < 600) {
 				if(x<=250) {
