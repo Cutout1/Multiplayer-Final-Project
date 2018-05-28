@@ -18,6 +18,7 @@ public class BSDraw extends Canvas {
 
 	private JFrame frame;
 	private Image image;
+	private boolean[][] points;
 	
 	   public BSDraw() {
 		   
@@ -54,23 +55,30 @@ public class BSDraw extends Canvas {
 		   }
 		   
 		   //label grids
-		   char c = 'A';
+		   char ch = 'A';
 		   int num = 1;
 		   for(int i = 0; i<10; i++) {
 			   g2d.drawString(""+num, 30, 60 + 30*i);
-			   g2d.drawString(""+c, 60 + 30*i, 30);
+			   g2d.drawString(""+ch, 60 + 30*i, 30);
 			   
 			   g2d.drawString(""+num, 430, 460 + 30*i);
-			   g2d.drawString(""+c, 460 + 30*i, 430);
+			   g2d.drawString(""+ch, 460 + 30*i, 430);
 			   
 			   num++;
-			   c++;
+			   ch++;
+		   }
+		   g2d.setColor(Color.GRAY);
+		   for(int r=0; r<10; r++) {
+			   for(int c=0; c<10; c++) {
+				   if(points[r][c]) {
+					   g2d.drawOval(450 + r*30, 450 + c*30, 30, 30);
+				   }
+			   }
 		   }
 		   
 	   }
 
-	public void updatePoints(int[][] myPoints) {
-		// TODO Auto-generated method stub
-		
+	public void updatePoints(boolean[][] thePoints) {
+		points = thePoints;
 	}
 }
