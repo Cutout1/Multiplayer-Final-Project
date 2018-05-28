@@ -15,6 +15,9 @@ public class BattleShips extends Thread implements MouseListener {
 	
 	private boolean[][] myPoints = new boolean[10][10];
 	
+	//0 is blank, 1 is miss, 2 is hit
+	private int[][] opponentPoints = new int[10][10];
+	
 	private BSDraw BSD;
 	private JFrame frame;
 	
@@ -33,10 +36,13 @@ public class BattleShips extends Thread implements MouseListener {
         frame.setVisible(true);
         
         BSD.addMouseListener(this);
-        		
-        BSD.updatePoints(myPoints);
+        
+        BSD.updatePoints(myPoints, opponentPoints);
         BSD.repaint();
         
+	}
+	private void attack(int x, int y) {
+		
 	}
 	
 	private void place(int x, int y) {
@@ -44,7 +50,7 @@ public class BattleShips extends Thread implements MouseListener {
 			myPoints[x/30][y/30] = true;	
 			pointsLeft--;
 			
-			BSD.updatePoints(myPoints);
+			BSD.updatePoints(myPoints, opponentPoints);
 	        BSD.repaint();
 		}
 	}
@@ -56,6 +62,10 @@ public class BattleShips extends Thread implements MouseListener {
 		if(pointsLeft>0) {
 			if(x>=450 && x<=750 && y>=450 && y<=750) {
 				place(x-450, y-450);
+			}
+		} else {
+			if(x>=50 && x<=350 && y>=50 && y<=350) {
+				attack(x-50, y-50);
 			}
 		}
 	}
