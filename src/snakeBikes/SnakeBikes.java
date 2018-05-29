@@ -16,7 +16,7 @@ public class SnakeBikes extends Thread implements KeyListener {
 	
 	//angle in radians
 	private double angle;
-	private int speed = 5;
+	private int speed = 15;
 	
 	private Client client;
 	
@@ -47,7 +47,7 @@ public class SnakeBikes extends Thread implements KeyListener {
         boolean b = true;
         for(int c=0; b; c++) {
         	try {
-				Thread.sleep(50);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
