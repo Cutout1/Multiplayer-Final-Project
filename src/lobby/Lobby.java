@@ -9,9 +9,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.net.URL;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +28,7 @@ import javax.swing.SwingUtilities;
 import main.Client;
 import main.Server;
 import snakeBikes.SnakeBikes;
+import sound.Sound;
 import ticTacToe.TTTDraw;
 import ticTacToe.TicTacToe;
 import battleShips.BattleShips;
@@ -66,6 +73,8 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 		frame.setVisible(true);
 
 		LD.repaint();
+		
+		Sound.CHEEKIBREEKI.play();
 		
 		while(true) {
         	try {

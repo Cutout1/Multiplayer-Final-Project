@@ -69,6 +69,7 @@ public class SnakeBikes extends Thread implements KeyListener {
         	int search = 2;
         	
         	//test collision
+        	/*
         	if(points.size()>5) {
 	        	Point thePoint = points.get(points.size()-1);
 	        	for(int i = points.size()-2; i >= 0; i--) {
@@ -77,7 +78,7 @@ public class SnakeBikes extends Thread implements KeyListener {
 	        		//	b = false;
 	        		}
 	        	}
-        	}
+        	}*/
         	//boarder
         	Point newest = points.get(points.size()-1);
         	if(newest.x < 0 || newest.x > 800 || newest.y < 0 || newest.y > 800 ) {
@@ -93,10 +94,10 @@ public class SnakeBikes extends Thread implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keycode = e.getKeyCode();
-		if(keycode==KeyEvent.VK_A) {
+		if(keycode==KeyEvent.VK_LEFT) {
 			angle = angle + (Math.PI*0.0625);
 		}
-		if(keycode==KeyEvent.VK_D) {
+		if(keycode==KeyEvent.VK_RIGHT) {
 			angle = angle - (Math.PI*0.0625);
 		}
 	}

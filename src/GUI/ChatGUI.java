@@ -57,9 +57,7 @@ public class ChatGUI extends Thread implements ActionListener {
 		addComponents();
 		frame.setVisible(true);
 		panel.setBackground(Color.CYAN);
-		
-		Sound.CHEEKIBREEKI.play();
-		
+
 	}
 	
 	private void addComponents() {

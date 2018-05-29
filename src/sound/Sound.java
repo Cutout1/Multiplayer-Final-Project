@@ -6,7 +6,7 @@ import java.io.*;
 
 public enum Sound {
 	
-	CHEEKIBREEKI("assets/Cheeki Breeki.wav");
+	CHEEKIBREEKI("sounds/Cheeki Breeki.wav");
 	//SNAKECRASH("crash.wav"),
 	
 	
