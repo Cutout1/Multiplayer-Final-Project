@@ -43,4 +43,27 @@ public enum Sound {
 	         clip.start();   
 	      }
 	   }
-}
+	   
+	   public void stop() {
+		   clip.stop();
+		   clip.setFramePosition(0);
+	   }
+	   
+	  /* public void loop() {
+		   if (volume != Volume.MUTE) {
+		         if (clip.isRunning()) {
+		            clip.stop();  
+		         }
+		         clip.setFramePosition(0);
+		         clip.start();   
+		      }
+		   if (clip.getFramePosition() == 0) {
+			   if (volume != Volume.MUTE) {
+			         if (clip.isRunning()) {
+			            clip.stop();  
+			         }
+			         clip.setFramePosition(0);
+			         clip.start();   
+			      } 
+		   }*/
+	   }

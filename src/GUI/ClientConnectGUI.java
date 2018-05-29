@@ -31,13 +31,13 @@ public class ClientConnectGUI implements ActionListener, KeyListener {
 	
 	private Client client;
 	
-	private textHint hint;
+	//private textHint hint;
 	
 	public ClientConnectGUI() {
 		initialize();
 	}
 	
-	private void initialize(){
+	private void initialize() {
 		frame = new JFrame("Connect to Server");
 		frame.setBounds(0,0,500,200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
