@@ -42,7 +42,18 @@ public class BattleShips extends Thread implements MouseListener {
         
 	}
 	private void attack(int x, int y) {
-		
+		//send coords of attack
+	}
+	
+	//place information recieved as the result of the attack on the opponent
+	public void recieveInfo(int x, int y, boolean shipThere) {
+		if(shipThere) {
+			//draw hit
+			opponentPoints[x][y] = 2;
+		} else {
+			//draw miss
+			opponentPoints[x][y] = 1;
+		}
 	}
 	
 	private void place(int x, int y) {
