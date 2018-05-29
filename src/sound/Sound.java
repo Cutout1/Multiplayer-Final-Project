@@ -19,7 +19,7 @@ public enum Sound {
 	
 	private Clip clip;
 	   
-	   Sound(String soundFileName) {
+	   Sound(String soundFileName) {   //create the "Sound object" --> The parameters should be the name of the file
 	      try {
 	         URL url = this.getClass().getClassLoader().getResource(soundFileName);
 	         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
@@ -34,7 +34,7 @@ public enum Sound {
 	      }
 	   }
 	 
-	   public void play() {
+	   public void play() {  //do [soundobjectucreated].play(); and fingers crossed it should work
 	      if (volume != Volume.MUTE) {
 	         if (clip.isRunning()) {
 	            clip.stop();  
