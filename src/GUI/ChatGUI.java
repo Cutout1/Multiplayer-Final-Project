@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import main.Client;
+import sound.Sound;
 
 public class ChatGUI extends Thread implements ActionListener {
 	
@@ -56,6 +57,9 @@ public class ChatGUI extends Thread implements ActionListener {
 		addComponents();
 		frame.setVisible(true);
 		panel.setBackground(Color.CYAN);
+		
+		Sound.CHEEKIBREEKI.play();
+		
 	}
 	
 	private void addComponents() {
