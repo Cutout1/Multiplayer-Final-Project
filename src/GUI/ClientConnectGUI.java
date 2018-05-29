@@ -31,6 +31,8 @@ public class ClientConnectGUI implements ActionListener, KeyListener {
 	
 	private Client client;
 	
+	private textHint hint;
+	
 	public ClientConnectGUI() {
 		initialize();
 	}
