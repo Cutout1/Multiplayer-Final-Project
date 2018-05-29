@@ -162,41 +162,41 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
-		int x = e.getX();
-		System.out.println("mouse pressed x = "+x+" y = "+e.getY());
-		
-		if(x<=250) {
-			//battle ships
-			battleShips = new BattleShips();
-			battleShips.start();
-		}
-		else if(x<=500) {
-			//tic tac toe
-			client.send("STTT");
-			client.setWaitingTTT(true);
-		}
-		else if(x<=750) {
-			//rock paper scissors
-			client.send("SRPS");
-			client.setWaitingRPS(true);
-		}
-		else if(x<=1000) {
-			//snake bikes
-			client.send("SSB");
-			client.setWaitingSB(true);
-		}
+		//if(mouseIn) {
+			int x = e.getX();
+			System.out.println("mouse pressed x = "+x+" y = "+e.getY());
+			
+			if(x<=250) {
+				//battle ships
+				battleShips = new BattleShips();
+				battleShips.start();
+			}
+			else if(x<=500) {
+				//tic tac toe
+				client.send("STTT");
+				client.setWaitingTTT(true);
+			}
+			else if(x<=750) {
+				//rock paper scissors
+				client.send("SRPS");
+				client.setWaitingRPS(true);
+			}
+			else if(x<=1000) {
+				//snake bikes
+				client.send("SSB");
+				client.setWaitingSB(true);
+			}
+		//}
 	}
 
 	@Override
