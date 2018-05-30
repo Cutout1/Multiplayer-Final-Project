@@ -19,16 +19,20 @@ public class StartUpGUI implements ActionListener {
 	
 	private JButton serverButton;
 	private JButton clientButton;
+	private JButton helpButton;
 	
 	private Server server;
 	
+	public boolean helpExists;
+	
 	public StartUpGUI() {
+		helpExists = false;
 		initialize();
 	}
 	
 	private void initialize() {
 		frame = new JFrame("Cool Game");
-		frame.setBounds(0,0,500,300);
+		frame.setBounds(0, 0, 750, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -52,6 +56,13 @@ public class StartUpGUI implements ActionListener {
 		clientButton.setActionCommand("ClientButton");
 		clientButton.addActionListener(this);
 		panel.add(clientButton);
+		
+		helpButton = new JButton("Help");
+		helpButton.setBounds(500, 100, 150, 100);
+		helpButton.setForeground(Color.BLUE);
+		helpButton.setActionCommand("HelpButton");
+		helpButton.addActionListener(this);
+		panel.add(helpButton);
 	}
 	
 	
@@ -69,7 +80,7 @@ public class StartUpGUI implements ActionListener {
 			System.out.println("serverStarted");
 			}catch(Exception e) {
 				//catch for non numbers entered
-				JOptionPane.showMessageDialog(frame, "Plese enter an actual number", "Error", JOptionPane.ERROR_MESSAGE);	
+				JOptionPane.showMessageDialog(frame, "Please enter an actual number", "Error", JOptionPane.ERROR_MESSAGE);	
 			}
 		}
 		if(command.equals("ClientButton")) {
@@ -77,6 +88,12 @@ public class StartUpGUI implements ActionListener {
 			//launch client
 			frame.hide();
 			ClientConnectGUI clientGUI = new ClientConnectGUI();
+		}
+		
+		if (command.equals("HelpButton")) {
+			System.out.println("Launching help page! :)");
+			helpExists = true;
+			HelpGUI helpme = new HelpGUI(helpExists);
 		}
 		
 	}
