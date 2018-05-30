@@ -59,7 +59,6 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 		LD = new LobbyDraw();
 		frame = new JFrame("Game Lobby");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		//addButtons();
 		frame.add(LD);
 		//frame.add(panel);
@@ -136,10 +135,12 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 	
 	public void hide() {
 		frame.hide();
+		LD.onScreen = false;
 	}
 	
 	public void show() {
 		frame.show();
+		LD.onScreen = true;
 	}
 	
 	@Override
