@@ -6,10 +6,12 @@ import java.io.*;
 
 public enum Sound {
 	
-	CHEEKIBREEKI("sounds/Cheeki Breeki.wav");
+	CHEEKIBREEKI("sounds/Cheeki Breeki.wav"),
 	//SNAKECRASH("crash.wav"),
 	
-	
+	ROTV("sounds/Ride_Of_The_Valkyries.wav"),
+	HIT("sounds/hit.wav"),
+	MISS("sounds/miss.wav");
 	
 	public static enum Volume {
 		MUTE, LOW, MEDIUM, HIGH
