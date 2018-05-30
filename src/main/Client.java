@@ -13,12 +13,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import GUI.ChatGUI;
 import GUI.RockPaperScissorsGUI;
 import battleShips.BattleShips;
 import lobby.Lobby;
 import snakeBikes.SnakeBikes;
+import sound.Sound;
 import ticTacToe.TicTacToe;
 
 public class Client extends Thread{
@@ -248,6 +250,7 @@ public class Client extends Thread{
 	}
 	
 	//Stops people from saying rude or inappropriate things in chat
+	//Dont read this code if you don't want to see bad words.
 	public String censor(String str) {
 		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 || 
 		    str.toLowerCase().indexOf("god is dead") != -1 || 
@@ -258,7 +261,7 @@ public class Client extends Thread{
 		    str.toLowerCase().indexOf("nig") != -1 || 
 		    str.toLowerCase().indexOf("chink") != -1 || 
 		    str.toLowerCase().indexOf("Jap ") != -1) {
-			int r = (int)(Math.Random() * 5);
+			int r = (int)(Math.random() * 5);
 			if (r == 0) {
 				str = "I love God and God loves me";
 			}
@@ -276,6 +279,10 @@ public class Client extends Thread{
 				 JOptionPane.showMessageDialog(panel, "Sorry sir, this is a Christian server; NO SWEARING", "Warning",
         JOptionPane.WARNING_MESSAGE);
 			}
+		}
+		if(str.toLowerCase().indexOf("nazi music") != -1) {
+			Sound.CHEEKIBREEKI.stop();
+			Sound.ROTV.play();
 		}
 		return str;
 	}
