@@ -1,5 +1,5 @@
 package snakeBikes;
-
+//Class description: Draws the graphics for the defunct Snake Bikes game.
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
