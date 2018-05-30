@@ -3,6 +3,7 @@ package battleShips;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,14 +22,13 @@ public class BSDraw extends Canvas {
 	private Image image;
 	private boolean[][] points;
 	private int[][] opponentPoints;
+	private boolean preGame;
 	
 	   public BSDraw() {
 		   
 		   super();
 		   
-		/*   try {
-			   image = ImageIO.read(new File("file path"));
-		   }catch(Exception e) { e.printStackTrace(); }*/
+		   image = new ImageIcon("assets/ships.png").getImage();
 		   
 		    setSize(800, 800);
 		    setBackground(Color.white);
@@ -41,6 +42,9 @@ public class BSDraw extends Canvas {
 		   //draw opponent grid
 		   g2d.setColor(Color.GRAY);
 		   g2d.setStroke(new BasicStroke(5));
+		   
+		   //draw ships info
+		   g2d.drawImage(image, 400, 50, frame);
 		   
 		   for(int i = 0; i<=10; i++) {
 			   g2d.drawLine( 50 + i*30, 50, 50 + i*30, 350);
@@ -93,6 +97,24 @@ public class BSDraw extends Canvas {
 				   }
 			   }
 		   }
+		   /*implement when daniel is done making changes to BattleShips.java:
+		   g2d.setFont(new Font("Helvetica", Font.PLAIN, 18));
+		   g2d.setColor(Color.BLACK);
+		   
+		   if(preGame){
+			   
+			   g2d.drawString("Place your ships coordinates by clicking on your grid\n"
+			   		+ "Place your ship coords in lines the length of the ship\n"
+			   		+ "you are placing. Do not overlap ships. Use the diagram\n"
+			   		+ "on the top right to determine the length of each of your\n"
+			   		+ "ships. No Cheating!", 50, 400);
+		   } else {
+			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n"
+			   		+ "a red circle you have sucessfully hit their ship. If it\n"
+			   		+ "becomes a blue circle you have missed. Last player with\n"
+			   		+ "ships left wins.", 50, 400);
+		   }*/
+		   
 		   
 	   }
 
