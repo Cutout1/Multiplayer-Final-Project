@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import main.Client;
+import sound.Sound;
 import ticTacToe.TTTDraw;
 
 public class BattleShips extends Thread implements MouseListener, KeyListener {
@@ -90,6 +91,7 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
 			myTurn = true;
 			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
+	        Sound.MISS.play();
 		}
 		if(myPoints[x][y] == 1) {
 			myPoints[x][y] = 2;
@@ -97,6 +99,7 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
 			myTurn = true;
 			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
+	        Sound.HIT.play();
 		}
 	}
 	
@@ -106,10 +109,12 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
 			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 			checkWinner();
+			Sound.HIT.play();
 		} else {
 			opponentPoints[x][y] = 1;
 			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
+	        Sound.MISS.play();
 		}
 	}
 	
@@ -235,6 +240,7 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
 	   if(shipBeingPlaced==0) {
 		   preGame = false;
 		   b = false;
+		   pointsLeft = 0;
 	   }
 	   BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
 	   BSD.repaint();

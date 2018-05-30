@@ -6,7 +6,10 @@ import java.io.*;
 
 public enum Sound {
 	
-	CHEEKIBREEKI("sounds/Cheeki Breeki.wav");
+	CHEEKIBREEKI("sounds/Cheeki Breeki.wav"),
+	HIT("sounds/hit.wav"),
+	MISS("sounds/miss.wav"),
+	ROTV("sounds/Ride_Of_The_Valkyries.wav");
 	//SNAKECRASH("crash.wav"),
 	
 	
