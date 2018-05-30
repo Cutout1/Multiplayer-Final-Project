@@ -31,7 +31,7 @@ public class BSDraw extends Canvas {
 		   
 		   super();
 		   
-		   image = new ImageIcon("assets/ships.png").getImage();
+		   image = new ImageIcon("src/images/ships.png").getImage();
 		   
 		    setSize(800, 800);
 		    setBackground(Color.white);

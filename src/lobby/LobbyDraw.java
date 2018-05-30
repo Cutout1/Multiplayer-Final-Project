@@ -29,7 +29,7 @@ public class LobbyDraw extends Canvas {
 		super();
 
 		try {
-			image = ImageIO.read(new File("assets/titlescreenAPCS.png"));
+			image = ImageIO.read(new File("src/images/titlescreenAPCS.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

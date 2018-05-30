@@ -31,7 +31,7 @@ public class SBDraw extends Canvas {
 		   
 		   super();
 		   
-		   image = new ImageIcon("assets/snakeBikeSprite.jpg").getImage();
+		   image = new ImageIcon("src/images/snakeBikeSprite.jpg").getImage();
 		   
 		    setSize(800, 800);
 		    setBackground(Color.white);
