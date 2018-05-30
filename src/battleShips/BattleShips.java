@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 import main.Client;
 import ticTacToe.TTTDraw;
 
-public class BattleShips extends Thread implements MouseListener {
+public class BattleShips extends Thread implements MouseListener, KeyListener {
 	
 	//0 is blank, 1 is ship, 2 is ship that was hit, 3 is an enemy miss
 	private int[][] myPoints = new int[10][10];
@@ -26,6 +26,11 @@ public class BattleShips extends Thread implements MouseListener {
 	private Client client;
 	public boolean myTurn;
 	public boolean enemyShipsPlaced;
+	
+	private boolean isVertical;
+	private int shipBeingPlaced;
+	private boolean preGame;
+	private boolean b;
 	
 	//how many points you have left to place
 	private int pointsLeft;
@@ -45,11 +50,26 @@ public class BattleShips extends Thread implements MouseListener {
         frame.setVisible(true);
         
         BSD.addMouseListener(this);
+        BSD.addKeyListener(this);
         
-        //myPoints[2][2] = 2;
+        preGame = true;
+        isVertical = true;
+        shipBeingPlaced = 5;
         
-        BSD.updatePoints(myPoints, opponentPoints, true);
+        BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
         BSD.repaint();
+        
+        b = true;
+        while(b) {
+        	try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
+        	BSD.repaint();
+        }
 	}
 	
 	private void attack(int x, int y) {
@@ -58,7 +78,7 @@ public class BattleShips extends Thread implements MouseListener {
 			myTurn = false;
 			client.send("BS " + (x/30) + " " + (y/30));
 			
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		}
 	}
@@ -68,14 +88,14 @@ public class BattleShips extends Thread implements MouseListener {
 			myPoints[x][y] = 3;
 			client.send("BSMISS " + x + " " + y);
 			myTurn = true;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		}
 		if(myPoints[x][y] == 1) {
 			myPoints[x][y] = 2;
 			client.send("BShipHit " + x + " " + y);
 			myTurn = true;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		}
 	}
@@ -83,12 +103,12 @@ public class BattleShips extends Thread implements MouseListener {
 	public void recieveAnswer(boolean hit, int x, int y) {
 		if(hit) {
 			opponentPoints[x][y] = 2;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 			checkWinner();
 		} else {
 			opponentPoints[x][y] = 1;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		}
 	}
@@ -115,7 +135,7 @@ public class BattleShips extends Thread implements MouseListener {
 	
 	public void setTurn(boolean t) {
 		myTurn = t;
-		BSD.updatePoints(myPoints, opponentPoints, false);
+		BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
         BSD.repaint();
 	}
 	
@@ -132,24 +152,92 @@ public class BattleShips extends Thread implements MouseListener {
 		if(shipThere) {
 			//draw hit
 			opponentPoints[x][y] = 2;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		} else {
 			//draw miss
 			opponentPoints[x][y] = 1;
-			BSD.updatePoints(myPoints, opponentPoints, false);
+			BSD.updatePoints(myPoints, opponentPoints, false, isVertical, shipBeingPlaced);
 	        BSD.repaint();
 		}
 	}
 	
-	private void place(int x, int y) {
-		if(myPoints[x/30][y/30] == 0) {
-			myPoints[x/30][y/30] = 1;	
-			pointsLeft--;
-			
-			BSD.updatePoints(myPoints, opponentPoints, pointsLeft>0);
-	        BSD.repaint();
-		}
+	private void place(int theX, int theY) {
+		int x = theX/30;
+		int y = theY/30;
+		try {
+			   if(shipBeingPlaced>2) {
+				   if(isVertical) {
+					   if(y+shipBeingPlaced-1<10) {
+						   boolean a = true;
+						   for(int i=0; i<shipBeingPlaced; i++) {
+							   if(myPoints[x][y+i] == 1) {
+								   a = false;
+							   }
+						   }
+						   if(a) {
+							   for(int i=0; i<shipBeingPlaced; i++) {
+								   myPoints[x][y+i] = 1;
+							   }
+							   shipBeingPlaced--;
+						   }
+					   }   
+				   } else {
+					   if(x+shipBeingPlaced-1<10) {
+						   boolean a = true;
+						   for(int i=0; i<shipBeingPlaced; i++) {
+							   if(myPoints[x+i][y] == 1) {
+								   a = false;
+							   }
+						   }
+						   if(a) {
+							   for(int i=0; i<shipBeingPlaced; i++) {
+								   myPoints[x+i][y] = 1;
+							   }
+							   shipBeingPlaced--;
+						   }
+					   }
+				   }
+			   } else if(shipBeingPlaced>0) {
+				   if(isVertical) {
+					   if(y+shipBeingPlaced<10) {
+						   boolean a = true;
+						   for(int i=0; i<shipBeingPlaced+1; i++) {
+							   if(myPoints[x][y+i] == 1) {
+								   a = false;
+							   }
+						   }
+						   if(a) {
+							   for(int i=0; i<shipBeingPlaced+1; i++) {
+								   myPoints[x][y+i] = 1;
+							   }
+							   shipBeingPlaced--;
+						   }
+					   }
+				   } else {
+					   if(x+shipBeingPlaced<10) {
+						   boolean a = true;
+						   for(int i=0; i<shipBeingPlaced+1; i++) {
+							   if(myPoints[x+i][y] == 1) {
+								   a = false;
+							   }
+						   }
+						   if(a) {
+							   for(int i=0; i<shipBeingPlaced+1; i++) {
+								   myPoints[x+i][y] = 1;
+							   }
+							   shipBeingPlaced--;
+						   }
+					   }
+				   }
+			   }
+	   }catch(ArrayIndexOutOfBoundsException e) {}
+	   if(shipBeingPlaced==0) {
+		   preGame = false;
+		   b = false;
+	   }
+	   BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
+	   BSD.repaint();
 	}
 
 	@Override
@@ -193,6 +281,32 @@ public class BattleShips extends Thread implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+		System.out.println("key pressed");
+		if(code==KeyEvent.VK_R) {
+			System.out.println("rotated");
+			if(isVertical) {
+				isVertical = false;
+			} else {
+				isVertical = true;
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}

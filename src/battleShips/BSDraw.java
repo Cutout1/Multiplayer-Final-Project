@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class BSDraw extends Canvas {
 	private int[][] points;
 	private int[][] opponentPoints;
 	private boolean preGame;
+	private boolean isVertical;
+	private int shipBeingPlaced;
 	
 	   public BSDraw() {
 		   
@@ -114,7 +117,7 @@ public class BSDraw extends Canvas {
 			   g2d.drawString("Place your ship coords in lines the length of the ship", 50, 425);
 			   g2d.drawString("you are placing. Do not overlap ships. Use the diagram", 50, 450);
 			   g2d.drawString("on the top right to determine the length of each of your", 50, 475);
-			   g2d.drawString("ships. No Cheating!", 50, 500);
+			   g2d.drawString("ships. Press R to rotate", 50, 500);
 		   } else {
 			   g2d.setColor(Color.GREEN);
 			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n", 50, 400);
@@ -129,11 +132,47 @@ public class BSDraw extends Canvas {
 		   g2d.drawString("Opponent's waters:", 50, 15);
 		   g2d.setColor(Color.BLUE);
 		   g2d.drawString("Your waters:", 450, 415);
+		   
+		 //hover
+		   g2d.setColor(Color.LIGHT_GRAY);
+		   if(preGame) {
+			   int mouseX = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x;
+			   int mouseY = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
+			   int x = (mouseX-450)/30;
+			   int y = (mouseY-450)/30;
+			   if(x>=0 && x <=10 && y>=0 && y<=10) {
+				   try {
+					   if(shipBeingPlaced>2) {
+						   if(isVertical) {
+							   for(int i=0; i<shipBeingPlaced; i++) {
+								   g2d.drawOval(450 + 30*(x), 450 + 30*(y+i), 30, 30);
+							   }
+						   } else {
+							   for(int i=0; i<shipBeingPlaced; i++) {
+								   g2d.drawOval(450 + 30*(x+i), 450 + 30*y, 30, 30);
+							   }
+						   }
+					   } else if(shipBeingPlaced>0) {
+						   if(isVertical) {
+							   for(int i=0; i<shipBeingPlaced+1; i++) {
+								   g2d.drawOval(450 + 30*(x), 450 + 30*(y+i), 30, 30);
+							   }
+						   } else {
+							   for(int i=0; i<shipBeingPlaced+1; i++) {
+								   g2d.drawOval(450 + 30*(x+i), 450 + 30*y, 30, 30);
+							   }
+						   }
+					   }
+			   }catch(ArrayIndexOutOfBoundsException e) {}
+			   }
+		   }
 	   }
 
-	public void updatePoints(int[][] thePoints, int[][] theOpponentPoints, boolean isPreGame) {
+	public void updatePoints(int[][] thePoints, int[][] theOpponentPoints, boolean isPreGame, boolean vertical, int shipPlaced) {
 		points = thePoints;
 		opponentPoints = theOpponentPoints;
 		preGame = isPreGame;
+		isVertical = vertical;
+		shipBeingPlaced = shipPlaced;
 	}
 }
