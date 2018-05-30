@@ -1,5 +1,9 @@
 package main;
 
+//Class Description: The Client class is the heart of our code. It processes all incoming messages from the server
+//		     and is used by the games to send messages to the server. It sends messages to the games from the
+//                   server as well. There is also some processing, such as the chat filter.
+
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,6 +41,8 @@ public class Client extends Thread{
 	private boolean waitingBS;
 	public ArrayList<Point> opponentPoints = new ArrayList();
 	
+	//Constructor takes the address of the server and the name of the user to connect
+	//to the server and instantialize everything.
 	public Client(String serverAddress, String theName) {
 		address = serverAddress;
 		name = theName;
@@ -44,30 +50,30 @@ public class Client extends Thread{
 		waitingTTT = false;
 		waitingSB = false;
 		waitingBS = false;
-		
+		//create the chat window
 		chat = new ChatGUI(this);
 		chat.start();
-		
+		//connect to the server
 		try {
 			Socket socket = new Socket(address, PORT);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintWriter(socket.getOutputStream(), true);
 			out.println(name);
-	    	send("CHAT " + "Hi, " + name + " here");
+	    		send("CHAT " + "Hi, " + name + " here");
 		}
 		catch (Exception e) {
 			System.out.println("Client Exception");
 		}
 	}
-
+	//A new thread that loops forever until the game ends, processing inputs from the server
 	public void run() {
 		try {
 	    	while(true) {
 	    		Thread.sleep(10);
 	    		String line = in.readLine();
 	    		if(line==null) {
-					return;
-				}
+				return;
+			}
 	    		System.out.println(line);
 	    		// process input
 	    		StringTokenizer st = new StringTokenizer(line);
@@ -75,6 +81,7 @@ public class Client extends Thread{
 	    			String otherUser = st.nextToken();
 	    			if(st.hasMoreTokens()) {
 	    				String command = st.nextToken();
+					//Starts Rock Paper Scissors if someone else clicks the button and you've clicked it
 	    				if (waitingRPS == true && !(otherUser.equals(name))) {
 	    					if (command.equals("SRPS")) {
 	    						send("CRPS");
@@ -92,6 +99,7 @@ public class Client extends Thread{
 	    						JOptionPane.showMessageDialog(null, "Game of Rock Paper Scissors has been started with " + otherPlayer);
 	    					}
 	    				}
+					//Starts Tic Tac Toe if someone else clicks the button and you've clicked it
 	    				if (waitingTTT == true && !(otherUser.equals(name))) {
 	    					if (command.equals("STTT")) {
 	    						send("CTTT");
@@ -111,6 +119,7 @@ public class Client extends Thread{
 	    						JOptionPane.showMessageDialog(null, "Game of Tic Tac Toe has been started with " + otherPlayer + ". You're O, you go second");
 	    					}
 	    				}
+					//Starts Snake Bikes if someone else clicks the button and you've clicked it
 	    				if (waitingSB == true && !(otherUser.equals(name))) {
 	    					if (command.equals("SSB")) {
 	    						send("CSB");
@@ -130,6 +139,7 @@ public class Client extends Thread{
 	    						//JOptionPane.showMessageDialog(null, "Game of Snake Bikes has been started with " + otherPlayer);
 	    					}
 	    				}
+					//Starts Battleships if someone else clicks the button and you've clicked it
 	    				if (waitingBS == true && !(otherUser.equals(name))) {
 	    					if (command.equals("SBS")) {
 	    						send("CBS");
@@ -149,6 +159,8 @@ public class Client extends Thread{
 	    						JOptionPane.showMessageDialog(null, "Game of Battle Ships has been started with " + otherPlayer);
 	    					}
 	    				}
+					//The following are checking for game related commands and calling methods in the games
+					//based on inputs
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
 	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
@@ -188,6 +200,7 @@ public class Client extends Thread{
 	    						((BattleShips) currentGame).loser();
 	    					}
 	    				}
+					//Processes chat to censor it and then print it to the chat GUI
 	    				if (command.equals("CHAT")) {
 	    					String message = "";
 	    					while(st.hasMoreTokens()) {
