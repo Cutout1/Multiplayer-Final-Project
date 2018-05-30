@@ -1,5 +1,5 @@
 package main;
-
+//Class Description: Server.java contains needed network and back end blocks to build and host a server.
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +22,7 @@ public class Server extends Thread{
 		gui = serverGUI;
 	}
 	
-	public void run() {
+	public void run() {  //start running the server
 		try {
 			System.out.println("startServer");
 			print("Server started on port "+PORT + "\nClients should connect to the IP: " + Inet4Address.getLocalHost().getHostAddress());
@@ -38,7 +38,7 @@ public class Server extends Thread{
 		catch (Exception e) {}
 	}
 	
-	public void print(String str) {
+	public void print(String str) {  //prints stuff to the server text area
 		gui.print(str);
 	}
 	
