@@ -51,7 +51,7 @@ public enum Sound {
 	   
 	  /* public void loop() {
 		   if (volume != Volume.MUTE) {
-		         if (clip.isRunning()) {
+		         if (clip.isRunning()) {  //hellotest
 		            clip.stop();  
 		         }
 		         clip.setFramePosition(0);
