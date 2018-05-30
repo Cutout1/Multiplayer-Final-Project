@@ -91,9 +91,7 @@ public class StartUpGUI implements ActionListener {
 		}
 		
 		if (command.equals("HelpButton")) {
-			System.out.println("Launching help page! :)");
-			helpExists = true;
-			HelpGUI helpme = new HelpGUI(helpExists);
+			HelpGUI helpme = new HelpGUI();
 		}
 		
 	}
