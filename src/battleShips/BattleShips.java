@@ -13,7 +13,8 @@ import ticTacToe.TTTDraw;
 
 public class BattleShips extends Thread implements MouseListener {
 	
-	private boolean[][] myPoints = new boolean[10][10];
+	//0 is blank, 1 is ship, 2 is ship that was hit
+	private int[][] myPoints = new int[10][10];
 	
 	//0 is blank, 1 is miss, 2 is hit
 	private int[][] opponentPoints = new int[10][10];
@@ -37,7 +38,9 @@ public class BattleShips extends Thread implements MouseListener {
         
         BSD.addMouseListener(this);
         
-        BSD.updatePoints(myPoints, opponentPoints);
+        myPoints[2][2] = 2;
+        
+        BSD.updatePoints(myPoints, opponentPoints, true);
         BSD.repaint();
         
 	}
@@ -57,11 +60,11 @@ public class BattleShips extends Thread implements MouseListener {
 	}
 	
 	private void place(int x, int y) {
-		if(myPoints[x/30][y/30] == false) {
-			myPoints[x/30][y/30] = true;	
+		if(myPoints[x/30][y/30] == 0) {
+			myPoints[x/30][y/30] = 1;	
 			pointsLeft--;
 			
-			BSD.updatePoints(myPoints, opponentPoints);
+			BSD.updatePoints(myPoints, opponentPoints, pointsLeft>0);
 	        BSD.repaint();
 		}
 	}

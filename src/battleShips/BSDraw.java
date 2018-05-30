@@ -20,7 +20,7 @@ public class BSDraw extends Canvas {
 
 	private JFrame frame;
 	private Image image;
-	private boolean[][] points;
+	private int[][] points;
 	private int[][] opponentPoints;
 	private boolean preGame;
 	
@@ -34,8 +34,6 @@ public class BSDraw extends Canvas {
 		    setBackground(Color.white);
 	   }
 	   
-	   public void setPoints() {
-	   }
 	   public void paint(Graphics g) {
 		   Graphics2D g2d = (Graphics2D) g;
 		   
@@ -73,10 +71,14 @@ public class BSDraw extends Canvas {
 			   ch++;
 		   }
 		   //draw my ships
-		   g2d.setColor(Color.GRAY);
 		   for(int r=0; r<10; r++) {
 			   for(int c=0; c<10; c++) {
-				   if(points[r][c]) {
+				   if(points[r][c]==1) {
+					   g2d.setColor(Color.GRAY);
+					   g2d.drawOval(450 + r*30, 450 + c*30, 30, 30);
+				   }
+				   else if(points[r][c]==2){
+					   g2d.setColor(Color.RED);
 					   g2d.drawOval(450 + r*30, 450 + c*30, 30, 30);
 				   }
 			   }
@@ -97,7 +99,7 @@ public class BSDraw extends Canvas {
 				   }
 			   }
 		   }
-		   /*implement when daniel is done making changes to BattleShips.java:
+		   
 		   g2d.setFont(new Font("Helvetica", Font.PLAIN, 18));
 		   g2d.setColor(Color.BLACK);
 		   
@@ -113,13 +115,14 @@ public class BSDraw extends Canvas {
 			   		+ "a red circle you have sucessfully hit their ship. If it\n"
 			   		+ "becomes a blue circle you have missed. Last player with\n"
 			   		+ "ships left wins.", 50, 400);
-		   }*/
+		   }
 		   
 		   
 	   }
 
-	public void updatePoints(boolean[][] thePoints, int[][] theOpponentPoints) {
+	public void updatePoints(int[][] thePoints, int[][] theOpponentPoints, boolean isPreGame) {
 		points = thePoints;
 		opponentPoints = theOpponentPoints;
+		preGame = isPreGame;
 	}
 }
