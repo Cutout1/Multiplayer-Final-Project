@@ -205,12 +205,17 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 			}
 			else if(x<=1000) {
 				//snake bikes
+				JOptionPane.showMessageDialog(
+				          frame,
+				            "Unfortunately this game is not availible yet, however it is comming soon!",
+				            "Coming Soon!",
+				            JOptionPane.ERROR_MESSAGE);
+				/*            
 				client.send("SSB");
 				client.setWaitingSB(true);
+				*/
 			}
-		//}
-	}
-
+		}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
