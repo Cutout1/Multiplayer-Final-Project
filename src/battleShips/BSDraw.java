@@ -1,5 +1,5 @@
 package battleShips;
-
+//Class Description: BSDRaw draws the canvas and graphics for the Battleship game.
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
