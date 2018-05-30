@@ -1,5 +1,5 @@
 package ticTacToe;
-
+//Class Description: This file includes the rules forthe game and GUI for the game Tic Tac Toe!
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,7 +15,7 @@ import main.Client;
 public class TicTacToe extends Thread implements MouseListener, KeyListener {
 
 	// 0 is blank, 1 is X, 2 is O
-	private int[][] points = new int[3][3];
+	private int[][] points = new int[3][3];  //creates the grid
 
 	private TTTDraw TTTD;
 	private JFrame frame;
@@ -38,7 +38,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 		}
 	}
 
-	public void run() {
+	public void run() {   //runs Tic Tac Toe
 		TTTD = new TTTDraw();
 		frame = new JFrame("Tic Tac Toe");
 		frame.add(TTTD);
@@ -48,12 +48,12 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 		TTTD.addMouseListener(this);
 		frame.addKeyListener(this);
 
-		TTTD.updatePoints(points);
+		TTTD.updatePoints(points);  //updating values on the screen through TTT Draw
 		TTTD.repaint();
 	}
 	
 	//when you click a cell:
-	private void click(int x, int y) {
+	private void click(int x, int y) {  
 		//cell is empty and you are X
 		if (isX && points[x][y] == 0) {
 			points[x][y] = 1;
