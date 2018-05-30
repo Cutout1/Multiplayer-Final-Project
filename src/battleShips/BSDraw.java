@@ -100,24 +100,30 @@ public class BSDraw extends Canvas {
 			   }
 		   }
 		   
-		   g2d.setFont(new Font("Helvetica", Font.PLAIN, 18));
+		   g2d.setFont(new Font("Helvetica", Font.PLAIN, 14));
 		   g2d.setColor(Color.BLACK);
 		   
+		   //in game help
 		   if(preGame){
 			   
-			   g2d.drawString("Place your ships coordinates by clicking on your grid\n"
-			   		+ "Place your ship coords in lines the length of the ship\n"
-			   		+ "you are placing. Do not overlap ships. Use the diagram\n"
-			   		+ "on the top right to determine the length of each of your\n"
-			   		+ "ships. No Cheating!", 50, 400);
+			   g2d.drawString("Place your ships coordinates by clicking on your grid", 50, 400);
+			   g2d.drawString("Place your ship coords in lines the length of the ship", 50, 425);
+			   g2d.drawString("you are placing. Do not overlap ships. Use the diagram", 50, 450);
+			   g2d.drawString("on the top right to determine the length of each of your", 50, 475);
+			   g2d.drawString("ships. No Cheating!", 50, 500);
 		   } else {
-			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n"
-			   		+ "a red circle you have sucessfully hit their ship. If it\n"
-			   		+ "becomes a blue circle you have missed. Last player with\n"
-			   		+ "ships left wins.", 50, 400);
+			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n", 50, 400);
+			   g2d.drawString("a red circle you have sucessfully hit their ship. If it\n", 50, 425);
+			   g2d.drawString("becomes a blue circle you have missed. Last player with\n", 50, 450);
+			   g2d.drawString("ships left wins.", 50, 475);
 		   }
 		   
-		   
+		   //labels for grids
+		   g2d.setFont(new Font("Helvetica", Font.BOLD, 18));
+		   g2d.setColor(Color.RED);
+		   g2d.drawString("Opponent's waters:", 50, 15);
+		   g2d.setColor(Color.BLUE);
+		   g2d.drawString("Your waters:", 450, 415);
 	   }
 
 	public void updatePoints(int[][] thePoints, int[][] theOpponentPoints, boolean isPreGame) {
