@@ -63,13 +63,19 @@ public class BattleShips extends Thread implements MouseListener, KeyListener {
         b = true;
         while(b) {
         	try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
-        	BSD.repaint();
+        	int mouseX = MouseInfo.getPointerInfo().getLocation().x - BSD.getLocationOnScreen().x;
+			int mouseY = MouseInfo.getPointerInfo().getLocation().y - BSD.getLocationOnScreen().y;
+			int x = (mouseX-450)/30;
+			int y = (mouseY-450)/30;
+			if(x>=0 && x <=10 && y>=0 && y<=10) {
+				BSD.updatePoints(myPoints, opponentPoints, preGame, isVertical, shipBeingPlaced);
+				BSD.repaint();
+			}
         }
 	}
 	
