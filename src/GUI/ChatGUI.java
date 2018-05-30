@@ -50,7 +50,7 @@ public class ChatGUI extends Thread implements ActionListener {
 	private void initialize(){
 		frame = new JFrame("Server Chat");
 		frame.setBounds(0,0,500,670);
-		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

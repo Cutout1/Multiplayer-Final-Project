@@ -113,16 +113,15 @@ public class BSDraw extends Canvas {
 		   //in game help
 		   if(preGame){
 			   
-			   g2d.drawString("Place your ships coordinates by clicking on your grid", 50, 400);
-			   g2d.drawString("Place your ship coords in lines the length of the ship", 50, 425);
-			   g2d.drawString("you are placing. Do not overlap ships. Use the diagram", 50, 450);
-			   g2d.drawString("on the top right to determine the length of each of your", 50, 475);
-			   g2d.drawString("ships. Press R to rotate", 50, 500);
+			   g2d.drawString("Place your ships by clicking on your grid where you want", 50, 400);
+			   g2d.drawString("to place them. To rotate the orientation you want to", 50, 425);
+			   g2d.drawString("place the ship press R. There are five ships you will", 50, 450);
+			   g2d.drawString("place of lengths 5, 4, 3, 3, and 2.", 50, 475);
 		   } else {
 			   g2d.setColor(Color.GREEN);
-			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n", 50, 400);
-			   g2d.drawString("a red circle you have sucessfully hit their ship. If it\n", 50, 425);
-			   g2d.drawString("becomes a blue circle you have missed. Last player with\n", 50, 450);
+			   g2d.drawString("Click on opponents grid to launch an attack if it becomes", 50, 400);
+			   g2d.drawString("a red circle you have sucessfully hit their ship. If it", 50, 425);
+			   g2d.drawString("becomes a blue circle you have missed. Last player with", 50, 450);
 			   g2d.drawString("ships left wins.", 50, 475);
 		   }
 		   
