@@ -1,5 +1,5 @@
 package battleShips;
-
+//Class Description: Contains rules and data for the Battleships game
 import java.awt.MouseInfo;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
