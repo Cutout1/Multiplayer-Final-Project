@@ -51,8 +51,10 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 		TTTD.updatePoints(points);
 		TTTD.repaint();
 	}
-
+	
+	//when you click a cell:
 	private void click(int x, int y) {
+		//cell is empty and you are X
 		if (isX && points[x][y] == 0) {
 			points[x][y] = 1;
 			myTurn = false;
@@ -67,6 +69,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				client.showLobby();
 				frame.dispose();
 			}
+		//cell is empty and you are O
 		} else if (points[x][y] == 0) {
 			points[x][y] = 2;
 			myTurn = false;
@@ -87,7 +90,9 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 
 	}
 
+	//when other player makes a move:
 	public void otherPlayerClick(int x, int y) {
+		//other player is O
 		if (isX) {
 			points[x][y] = 2;
 			myTurn = true;
@@ -100,6 +105,7 @@ public class TicTacToe extends Thread implements MouseListener, KeyListener {
 				client.currentGame = null;
 				frame.dispose();
 			}
+		//other player is X
 		} else {
 			points[x][y] = 1;
 			myTurn = true;

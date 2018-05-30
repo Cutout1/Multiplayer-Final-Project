@@ -1,5 +1,16 @@
 package main;
 
+/*
+ * Cool Fun Multiplayer Game!
+ * 
+ * Authors:
+ * Connor Galvin
+ * Shivam Mani
+ * Daniel Robinson
+ * 
+ * May 29, 2018
+ */
+
 import GUI.StartUpGUI;
 
 public class Main {

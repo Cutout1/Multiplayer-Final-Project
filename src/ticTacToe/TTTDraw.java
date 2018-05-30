@@ -31,6 +31,8 @@ public class TTTDraw extends Canvas {
 		    setSize(300, 300);
 		    setBackground(Color.green);
 	   }
+	   
+	   //update points so it can draw the most recent points
 	   public void updatePoints(int[][] thePoints) {
 		   points = thePoints;
 		   System.out.println(points);
@@ -59,15 +61,19 @@ public class TTTDraw extends Canvas {
 			   }
 		   }
 		   
+		   //draw Xs and Os
+		   g2d.setFont(new Font("Helvetica", Font.BOLD, 100));
 		   for(int x = 0; x < 3; x++) {
 			   for(int y = 0; y < 3; y++) {
 				   if(points[x][y] == 1) {
 					   //X
-					   g2d.drawString("X", (x*100)+50, (y*100)+50);
+					   g2d.setColor(Color.RED);
+					   g2d.drawString("X", (x*100)+15, (y*100)+85);
 				   }
 				   else if(points[x][y] == 2) {
 					   //O
-					   g2d.drawString("O", (x*100)+50, (y*100)+50);
+					   g2d.setColor(Color.BLUE);
+					   g2d.drawString("O", (x*100)+15, (y*100)+85);
 				   }
 			   }
 		   }
