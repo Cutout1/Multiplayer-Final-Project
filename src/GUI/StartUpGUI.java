@@ -1,5 +1,9 @@
 package GUI;
 
+/*
+ * The GUI that opens at the beginning of the application and asks the user if they want to start a client or server or see the help GUI.
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;

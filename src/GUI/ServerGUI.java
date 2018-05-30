@@ -1,5 +1,9 @@
 package GUI;
 
+/*
+ * The GUI for the server that shows what is going on on the sever
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;

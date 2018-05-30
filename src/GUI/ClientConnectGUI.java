@@ -1,5 +1,7 @@
 package GUI;
-
+/*
+ * The GUI for when the client is asked what sever IP they would like to join.
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;

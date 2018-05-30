@@ -1,4 +1,9 @@
 package GUI;
+
+/*
+ * The GUI with buttons for the Rock Paper Scissors Game
+ */
+
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.awt.BorderLayout;

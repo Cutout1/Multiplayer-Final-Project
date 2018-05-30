@@ -1,5 +1,7 @@
 package GUI;
-
+/*
+ * The GUI for the server-wide chat window that will allow users to chat with each other with each other while they are playing the games.
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
