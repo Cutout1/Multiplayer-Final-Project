@@ -249,11 +249,33 @@ public class Client extends Thread{
 	
 	//Stops people from saying rude or inappropriate things in chat
 	public String censor(String str) {
-		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 || str.toLowerCase().indexOf("god is dead") != -1) {
-			str = "I love God and God loves me";
-		}
-		if (str.toLowerCase().indexOf("fuck") != -1 || str.toLowerCase().indexOf("shit") != -1) {
-			str = "I tried to swear, but I realized swearing is not allowed on this CHRISTIAN SERVER";
+		if (str.toLowerCase().indexOf("atheism") != -1 || str.toLowerCase().indexOf("atheist") != -1 || 
+		    str.toLowerCase().indexOf("god is dead") != -1 || 
+		    str.toLowerCase().indexOf("fuck") != -1 || 
+		    str.toLowerCase().indexOf("shit") != -1 || 
+		    str.toLowerCase().indexOf("ass ") != -1 || 
+		    str.toLowerCase().indexOf("negro") != -1 || 
+		    str.toLowerCase().indexOf("nig") != -1 || 
+		    str.toLowerCase().indexOf("chink") != -1 || 
+		    str.toLowerCase().indexOf("Jap ") != -1) {
+			int r = (int)(Math.Random() * 5);
+			if (r == 0) {
+				str = "I love God and God loves me";
+			}
+			if (r == 1) {
+				str = "Time to go to church";
+			}
+			if (r == 2) {
+				str = "Amen";
+			}
+			if (r == 3) {
+				str = "I was going to swear, but then I realized that I cannot swear on this CHRISTIAN SERVER";
+			}
+			if (r == 4) {
+				JPanel panel = new JPanel();
+				 JOptionPane.showMessageDialog(panel, "Sorry sir, this is a Christian server; NO SWEARING", "Warning",
+        JOptionPane.WARNING_MESSAGE);
+			}
 		}
 		return str;
 	}
