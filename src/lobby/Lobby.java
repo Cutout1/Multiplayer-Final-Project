@@ -1,5 +1,5 @@
 package lobby;
-
+//Class Description: Contains code for main game lobby and redirects users to correct game and includes multiplayer waiting code. 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -54,7 +54,7 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 		client = client1;
 	}
 
-	public void run() {
+	public void run() {   //runs the lobby
 		
 		LD = new LobbyDraw();
 		frame = new JFrame("Game Lobby");
@@ -133,20 +133,20 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 		panel.add(BS);
 	}*/
 	
-	public void hide() {
+	public void hide() {  //if you choose to hide the game, it stops playing CHEEKI BREEKI!
 		frame.hide();
 		LD.onScreen = false;
 		Sound.CHEEKIBREEKI.stop();
 	}
 	
-	public void show() {
+	public void show() {  //continues to play CHEEKI BREEKI and shows the lobby again
 		frame.show();
 		LD.onScreen = true;
 		Sound.CHEEKIBREEKI.play();
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) {   //implementation for actionPerformed, includes what the client should send after
 		String command = arg0.getActionCommand();
 		if(command.equals("RPS")) {
 			client.send("SRPS");
@@ -183,7 +183,7 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {  //mouse is pressed or no and where.
 		//if(mouseIn) {
 			int x = e.getX();
 			System.out.println("mouse pressed x = "+x+" y = "+e.getY());
