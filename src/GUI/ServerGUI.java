@@ -31,7 +31,7 @@ public class ServerGUI implements ActionListener {
 		panel.setLayout(null);
 		addComponents();
 		frame.setVisible(true);
-		panel.setBackground(Color.CYAN);
+		panel.setBackground(Color.RED);
 	}
 	
 	private void addComponents() {
@@ -44,9 +44,9 @@ public class ServerGUI implements ActionListener {
 		scrollPane.setViewportView(textArea);
 	}
 	public void print(String msg) {
-		textArea.setText(textArea.getText()+"\n"+msg);
-		panel.setBackground(Color.RED);
-		textArea.updateUI();
+		textArea.append("\n"+msg);
+		//textArea.setText(textArea.getText()+"\n"+msg);
+		//textArea.updateUI();
 		System.out.println(msg);
 	}
 	

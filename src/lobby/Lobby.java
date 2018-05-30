@@ -136,11 +136,13 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 	public void hide() {
 		frame.hide();
 		LD.onScreen = false;
+		Sound.CHEEKIBREEKI.stop();
 	}
 	
 	public void show() {
 		frame.show();
 		LD.onScreen = true;
+		Sound.CHEEKIBREEKI.play();
 	}
 	
 	@Override
