@@ -64,5 +64,6 @@ public class SBDraw extends Canvas {
 
 		   g2d.rotate(-rad, points.get(points.size()-1).x, points.get(points.size()-1).y);
 		   g2d.drawImage(image, points.get(points.size()-1).x, points.get(points.size()-1).y, frame);
+		   g2d.drawString(""+rad, 100, 100);
 	   }
 }

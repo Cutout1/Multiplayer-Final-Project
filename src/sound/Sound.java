@@ -49,7 +49,7 @@ public enum Sound {
 		   clip.setFramePosition(0);
 	   }
 	   
-	  /* public void loop() {
+	   public void loop() {
 		   if (volume != Volume.MUTE) {
 		         if (clip.isRunning()) {  //hello test
 		            clip.stop();  
@@ -65,5 +65,5 @@ public enum Sound {
 			         clip.setFramePosition(0);
 			         clip.start();   
 			      } 
-		   }*/
+		   }
 	   }
