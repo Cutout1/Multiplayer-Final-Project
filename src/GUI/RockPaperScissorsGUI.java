@@ -53,6 +53,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 		panel.setBackground(Color.ORANGE);
 	}
 	private void addButtons() {
+		//rock button
 		rock = new JButton("Rock");
 		rock.setBounds(100, 100, 150, 100);
 		rock.setForeground(Color.BLUE);
@@ -60,6 +61,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 		rock.addActionListener(this);
 		panel.add(rock);
 		
+		//paper button
 		paper = new JButton("Paper");
 		paper.setBounds(300, 100, 150, 100);
 		paper.setForeground(Color.BLUE);
@@ -67,6 +69,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 		paper.addActionListener(this);
 		panel.add(paper);
 		
+		//scissors button
 		scissor = new JButton("Scissors");
 		scissor.setBounds(500, 100, 150, 100);
 		scissor.setForeground(Color.BLUE);
@@ -74,6 +77,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 		scissor.addActionListener(this);
 		panel.add(scissor);
 		
+		//quit button
 		quit = new JButton("X");
 		quit.setBounds(680, 5, 50, 50);
 		quit.setForeground(Color.BLUE);
@@ -114,6 +118,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 	}
 	
 	public void close() {
+		//close game
 		client.otherPlayer = null;
 		client.showLobby();
 		client.currentGame = null;
@@ -123,21 +128,25 @@ public class RockPaperScissorsGUI implements ActionListener{
 	
 	public void check(String otherChoice) {
 		if (myChoice == null) {
+			//time for your turn, other player has chosen
 			JOptionPane.showMessageDialog(null, otherPlayer + " has chosen his move, please pick");
 			otherPlayerHasMoved = true;
 			otherPlayerMove = otherChoice;
 		} else if(myChoice.equals(otherChoice)) {
+			//same choice so redo
 			JOptionPane.showMessageDialog(null, "You and " + otherPlayer + " have chosen the same move, pick again");
 			myChoice = null;
 			otherPlayerHasMoved = false;
 			otherPlayerMove = null;
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("PAPER")) {
+			//your rock looses to opponent's paper.
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose rock, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
 			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("ROCK") && otherChoice.equals("SCISSORS")) {
+			//your rock beats opponent's scissors.
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose rock, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
@@ -145,12 +154,14 @@ public class RockPaperScissorsGUI implements ActionListener{
 			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("SCISSORS")) {
+			//your paper looses to opponent's scissors.
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose scissors, and you chose paper, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
 			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("PAPER") && otherChoice.equals("ROCK")) {
+			//your paper beats opponent's rock.
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose paper, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
@@ -158,6 +169,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("PAPER")) {
+			//your scissors beats opponent's paper.
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose paper, and you chose scissors, so you win! :)");
 			client.otherPlayer = null;
 			client.sendWinMessage("Rock Paper Scissors");
@@ -165,6 +177,7 @@ public class RockPaperScissorsGUI implements ActionListener{
 			client.currentGame = null;
 			frame.dispose();
 		} else if(myChoice.equals("SCISSORS") && otherChoice.equals("ROCK")) {
+			//your scissors looses to opponent's rock
 			JOptionPane.showMessageDialog(null, otherPlayer + " chose rock, and you chose scissors, so you lose :(");
 			client.otherPlayer = null;
 			client.showLobby();
