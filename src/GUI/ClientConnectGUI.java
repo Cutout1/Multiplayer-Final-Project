@@ -53,7 +53,7 @@ public class ClientConnectGUI implements ActionListener, KeyListener {
 		IPField = new JTextField();
 		IPField.setBounds(20, 20, 440, 50);
 		IPField.setForeground(Color.GRAY);
-		IPField.setText("localhost");
+		IPField.setText("Server IP");
 		panel.add(IPField);
 		
 		connectB = new JButton("Connect to Server");

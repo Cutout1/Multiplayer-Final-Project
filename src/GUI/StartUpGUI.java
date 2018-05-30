@@ -57,7 +57,7 @@ public class StartUpGUI implements ActionListener {
 		clientButton.addActionListener(this);
 		panel.add(clientButton);
 		
-		helpButton = new JButton("Help");
+		helpButton = new JButton("Instructions");
 		helpButton.setBounds(500, 100, 150, 100);
 		helpButton.setForeground(Color.BLUE);
 		helpButton.setActionCommand("HelpButton");

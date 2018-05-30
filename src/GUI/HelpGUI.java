@@ -35,7 +35,7 @@ public class HelpGUI {
 	}
 	//initializes everything
 	private void initialize() {
-		frame = new JFrame("Game Help");
+		frame = new JFrame("Game Instructions");
 		frame.setBounds(0,0,700,600);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel = new JPanel();
