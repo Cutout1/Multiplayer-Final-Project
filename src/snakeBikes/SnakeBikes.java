@@ -1,5 +1,5 @@
 package snakeBikes;
-
+//Class description: .java file for the Snake bikes game that is not currently implemented!!
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

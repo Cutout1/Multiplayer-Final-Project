@@ -1,5 +1,5 @@
 package sound;
-
+//Class description: This is the sound enum and it includes the implementation of abstract methods.
 import javax.sound.sampled.*;
 import java.net.URL;
 import java.io.*;
@@ -47,14 +47,14 @@ public enum Sound {
 	      }
 	   }
 	   
-	   public void stop() {
+	   public void stop() {   //stop playing the track!
 		   clip.stop();
 		   clip.setFramePosition(0);
 	   }
 	   
-	   public void loop() {
+	   public void loop() {   //loop the track till stopped
 		   if (volume != Volume.MUTE) {
-		         if (clip.isRunning()) {  //hello test
+		         if (clip.isRunning()) { 
 		            clip.stop();  
 		         }
 		         clip.setFramePosition(0);
