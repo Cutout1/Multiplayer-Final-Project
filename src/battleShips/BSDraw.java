@@ -81,6 +81,10 @@ public class BSDraw extends Canvas {
 					   g2d.setColor(Color.RED);
 					   g2d.drawOval(450 + r*30, 450 + c*30, 30, 30);
 				   }
+				   else if(points[r][c]==3){
+					   g2d.setColor(Color.BLUE);
+					   g2d.drawOval(450 + r*30, 450 + c*30, 30, 30);
+				   }
 			   }
 		   }
 		   
@@ -112,6 +116,7 @@ public class BSDraw extends Canvas {
 			   g2d.drawString("on the top right to determine the length of each of your", 50, 475);
 			   g2d.drawString("ships. No Cheating!", 50, 500);
 		   } else {
+			   g2d.setColor(Color.GREEN);
 			   g2d.drawString("Click on opponents grid to launch an attack if it becomes\n", 50, 400);
 			   g2d.drawString("a red circle you have sucessfully hit their ship. If it\n", 50, 425);
 			   g2d.drawString("becomes a blue circle you have missed. Last player with\n", 50, 450);

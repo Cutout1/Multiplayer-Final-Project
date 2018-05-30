@@ -161,8 +161,8 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 			client.setWaitingTTT(true);
 		}
 		if(command.equals("BS")) {
-			battleShips = new BattleShips();
-			battleShips.start();
+			client.send("SBS");
+			client.setWaitingBS(true);
 		}
 	}
 
@@ -190,8 +190,8 @@ public class Lobby extends Thread implements MouseListener, ActionListener {
 			
 			if(x<=250) {
 				//battle ships
-				battleShips = new BattleShips();
-				battleShips.start();
+				client.send("SBS");
+				client.setWaitingBS(true);
 			}
 			else if(x<=500) {
 				//tic tac toe

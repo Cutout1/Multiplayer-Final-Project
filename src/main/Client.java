@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import GUI.ChatGUI;
 import GUI.RockPaperScissorsGUI;
+import battleShips.BattleShips;
 import lobby.Lobby;
 import snakeBikes.SnakeBikes;
 import ticTacToe.TicTacToe;
@@ -129,7 +130,25 @@ public class Client extends Thread{
 	    						//JOptionPane.showMessageDialog(null, "Game of Snake Bikes has been started with " + otherPlayer);
 	    					}
 	    				}
-	    				
+	    				if (waitingBS == true && !(otherUser.equals(name))) {
+	    					if (command.equals("SBS")) {
+	    						send("CBS");
+	    						currentGame = new BattleShips(this);
+	    						((BattleShips)currentGame).start();
+	    						setWaitingFalse();
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Battle Ships has been started with " + otherPlayer);
+	    					}
+	    					if (command.equals("CBS")) {
+	    						currentGame = new BattleShips(this);
+	    						((BattleShips)currentGame).start();
+	    						setWaitingFalse();
+	    						lobby.hide();
+	    						otherPlayer = otherUser;
+	    						JOptionPane.showMessageDialog(null, "Game of Battle Ships has been started with " + otherPlayer);
+	    					}
+	    				}
 	    				if ((command.equals("ROCK") || command.equals("PAPER") || command.equals("SCISSORS")) && otherUser.equals(otherPlayer)) {
 	    					((RockPaperScissorsGUI) currentGame).check(command);
 	    				}
@@ -142,6 +161,31 @@ public class Client extends Thread{
 	    				if(command.equals("SB")) {
 	    					if(otherUser.equals(otherPlayer)) {
 	    						opponentPoints.add(new Point (Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
+	    					}
+	    				}
+	    				if(command.equals("BS")) {
+	    					if(otherUser.equals(otherPlayer)) {
+	    						((BattleShips) currentGame).recieveAttack(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    					}
+	    				}
+	    				if(command.equals("BSMISS")) {
+	    					if(otherUser.equals(otherPlayer)) {
+	    						((BattleShips) currentGame).recieveAnswer(false, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    					}
+	    				}
+	    				if(command.equals("BShipHit")) {
+	    					if(otherUser.equals(otherPlayer)) {
+	    						((BattleShips) currentGame).recieveAnswer(true, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+	    					}
+	    				}
+	    				if(command.equals("BSDONE")) {
+	    					if(otherUser.equals(otherPlayer)) {
+	    						((BattleShips) currentGame).enemyShipsPlaced = true;
+	    					}
+	    				}
+	    				if(command.equals("BSYOULOOSEHAHA")) {
+	    					if(otherUser.equals(otherPlayer)) {
+	    						((BattleShips) currentGame).loser();
 	    					}
 	    				}
 	    				if (command.equals("CHAT")) {
@@ -179,6 +223,9 @@ public class Client extends Thread{
 	}
 	public void setWaitingSB(boolean t) {
 		waitingSB = t;
+	}
+	public void setWaitingBS(boolean t) {
+		waitingBS = t;
 	}
 	public void setWaitingFalse() {
 		waitingRPS = false;

@@ -37,7 +37,7 @@ public class HelpGUI implements ActionListener {
 	private void initialize() {
 		frame = new JFrame("Game Help");
 		frame.setBounds(0,0,700,400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
